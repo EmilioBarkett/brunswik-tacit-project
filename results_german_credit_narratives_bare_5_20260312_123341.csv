@@ -1,0 +1,2 @@
+"case_id","model","condition","credit_risk","classification","correct","eval_input_tokens","eval_output_tokens","scoring_input_tokens","scoring_output_tokens","timestamp","response_text","cue_weights_json","error"
+"1","openai/gpt-5-nano","bare","Good","API_ERROR","UNKNOWN","0","0","0","0","2026-03-12T12:33:51.507518","","{""error"": ""SKIPPED \u2014 eval failed""}","Error code: 404 - {'type': 'error', 'error': {'type': 'not_found_error', 'message': 'model: openai/gpt-5-nano'}, 'request_id': 'req_011CYyfcgKKaoYnxvHB23rLr'}"
