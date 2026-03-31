@@ -1,0 +1,59 @@
+======================================================================
+CUE WEIGHT ANALYSIS REPORT
+Model:    anthropic/claude-haiku-4-5
+Cases:    10
+Generated: 2026-03-25 19:15:20
+======================================================================
+
+── PART 1: DESCRIPTIVE TIER COMPARISON ──────────────────────────────
+
+Attribute                           Norm     LLM                Match   %HIGH   %NONE
+-------------------------------------------------------------------------------------
+checking_account_status             HIGH     HIGH               ✓       90.0    0.0
+installment_rate_pct                HIGH     MEDIUM             ✗       10.0    0.0
+credit_amount                       HIGH     MEDIUM             ✗       0.0     10.0
+duration_months                     HIGH     MEDIUM             ✗       20.0    20.0
+purpose                             MEDIUM   MEDIUM             ✓       0.0     30.0
+credit_history                      MEDIUM   HIGH               ✗       50.0    0.0
+savings_account_bonds               MEDIUM   HIGH               ✗       70.0    0.0
+employment_since                    MEDIUM   MEDIUM             ✓       10.0    0.0
+other_debtors_guarantors            MEDIUM   MEDIUM             ✓       10.0    20.0
+property                            MEDIUM   MEDIUM             ✓       10.0    10.0
+age_years                           MEDIUM   MEDIUM             ✓       30.0    10.0
+personal_status_sex                 MEDIUM   NOT_MENTIONED      ✗       0.0     50.0
+num_existing_credits                LOW      MEDIUM             ✗       10.0    20.0
+housing                             LOW      MEDIUM             ✗       10.0    20.0
+foreign_worker                      LOW      HIGH               ✗       70.0    0.0
+other_installment_plans             LOW      NOT_MENTIONED      ✗       0.0     60.0
+num_dependents                      LOW      LOW                ✓       20.0    20.0
+job                                 LOW      MEDIUM             ✗       40.0    20.0
+telephone                           LOW      HIGH               ✗       70.0    0.0
+present_residence_since             LOW      MEDIUM             ✗       0.0     40.0
+
+Tier match rate: 7/20 (35.0%)
+Spearman ρ (normative rank vs LLM weight rank): 0.359  p=0.120
+
+── OVER-WEIGHTED CUES (LLM rates higher than normative) ────────────
+
+  credit_history                      norm=MEDIUM  llm=HIGH  (norm rank #6)
+  savings_account_bonds               norm=MEDIUM  llm=HIGH  (norm rank #7)
+  num_existing_credits                norm=LOW  llm=MEDIUM  (norm rank #13)
+  housing                             norm=LOW  llm=MEDIUM  (norm rank #14)
+  foreign_worker                      norm=LOW  llm=HIGH  (norm rank #15)
+  job                                 norm=LOW  llm=MEDIUM  (norm rank #18)
+  telephone                           norm=LOW  llm=HIGH  (norm rank #19)
+  present_residence_since             norm=LOW  llm=MEDIUM  (norm rank #20)
+
+── UNDER-WEIGHTED CUES (LLM rates lower than normative) ────────────
+
+  installment_rate_pct                norm=HIGH  llm=MEDIUM  (norm rank #2)
+  credit_amount                       norm=HIGH  llm=MEDIUM  (norm rank #3)
+  duration_months                     norm=HIGH  llm=MEDIUM  (norm rank #4)
+  personal_status_sex                 norm=MEDIUM  llm=NOT_MENTIONED  (norm rank #12)
+  other_installment_plans             norm=LOW  llm=NOT_MENTIONED  (norm rank #16)
+
+── PART 2: REGRESSION-BASED COEFFICIENT COMPARISON ─────────────────
+
+  Skipped — Only 10 valid cases — need at least 20 for regression. Run more cases first.
+
+======================================================================

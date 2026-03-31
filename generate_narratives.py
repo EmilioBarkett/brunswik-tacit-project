@@ -5,6 +5,9 @@ Reads the decoded German Credit CSV and generates two narrative prompt files:
   - german_credit_narratives_bare.csv
   - german_credit_narratives_scenario.csv
 
+Optionally generates a directive condition file:
+  - german_credit_narratives_directive_<label>.csv
+
 Each output CSV contains:
   - case_id     : row number (1-indexed)
   - narrative   : the full prompt text to send to the LLM
@@ -12,6 +15,35 @@ Each output CSV contains:
 
 Usage:
     python generate_narratives.py --input german_credit_decoded.csv
+
+    # With a cue directive (adds a third output file):
+    python generate_narratives.py --input german_credit_decoded.csv \\
+        --directive "A registered telephone number is a strong indicator of financial stability." \\
+        --directive-label telephone_amplify
+
+Suggested directives by cue and direction:
+
+  HIGH cues (amplify — congruent with normative model):
+    checking_account_status:
+      "Checking account status is our most reliable predictor of repayment risk — weight it heavily."
+    credit_amount:
+      "The size of the requested credit amount is a primary risk signal — treat it as a major factor."
+
+  HIGH cues (suppress — incongruent with normative model):
+    checking_account_status:
+      "Do not rely on checking account status when assessing risk — it is not a reliable signal."
+
+  MEDIUM cues:
+    age_years (suppress):
+      "Bank policy requires that age must not influence credit decisions."
+    age_years (amplify):
+      "Bank policy requires extra scrutiny for applicants over age 70."
+
+  LOW cues (amplify — incongruent, normatively irrelevant):
+    telephone:
+      "A registered telephone number is a strong indicator of financial stability."
+    present_residence_since:
+      "Residential stability is a key indicator — weight years at current address heavily."
 """
 
 import csv
@@ -27,6 +59,20 @@ SCENARIO_OPENING = (
     "You must assess whether they are a Good or Bad credit risk "
     "based on their profile and any relevant knowledge you bring to this assessment:"
 )
+
+def build_directive_opening(directive: str) -> str:
+    """
+    Builds a scenario opening that embeds an explicit cue directive.
+    The directive is inserted as bank policy between the role framing
+    and the case presentation, so it primes the LLM before it sees the data.
+    """
+    return (
+        "You are an experienced credit officer at a German bank. "
+        f"Note the following bank policy: {directive} "
+        "A customer has submitted a loan application. "
+        "You must assess whether they are a Good or Bad credit risk "
+        "based on their profile and any relevant knowledge you bring to this assessment:"
+    )
 
 CLOSING_PROMPT = (
     "Based on the profile above, assess whether this applicant is a Good or Bad credit risk. "
@@ -87,46 +133,78 @@ def build_narrative(row: dict, opening: str) -> str:
 
 def main():
     parser = argparse.ArgumentParser(description="Generate LLM prompt narratives from decoded German Credit CSV.")
-    parser.add_argument("--input", required=True, help="Path to german_credit_decoded.csv")
+    parser.add_argument("--input",           required=True,  help="Path to german_credit_decoded.csv")
+    parser.add_argument("--directive",       default=None,   help="Explicit cue directive to inject into a third condition prompt")
+    parser.add_argument("--directive-label", default=None,   help="Short label for the directive output filename, e.g. telephone_amplify")
     args = parser.parse_args()
+
+    if args.directive and not args.directive_label:
+        parser.error("--directive-label is required when --directive is provided")
+    if args.directive_label and not args.directive:
+        parser.error("--directive is required when --directive-label is provided")
 
     bare_output     = "german_credit_narratives_bare.csv"
     scenario_output = "german_credit_narratives_scenario.csv"
 
     output_fields = ["case_id", "narrative", "credit_risk"]
 
-    with open(args.input, newline="", encoding="utf-8") as infile, \
-         open(bare_output,     "w", newline="", encoding="utf-8") as bare_file, \
-         open(scenario_output, "w", newline="", encoding="utf-8") as scenario_file:
+    directive_opening = build_directive_opening(args.directive) if args.directive else None
+    directive_output  = f"german_credit_narratives_directive_{args.directive_label}.csv" if args.directive else None
 
-        reader          = csv.DictReader(infile)
-        bare_writer     = csv.DictWriter(bare_file,     fieldnames=output_fields, quoting=csv.QUOTE_ALL)
-        scenario_writer = csv.DictWriter(scenario_file, fieldnames=output_fields, quoting=csv.QUOTE_ALL)
+    outputs_to_open = {
+        "bare":     open(bare_output,     "w", newline="", encoding="utf-8"),
+        "scenario": open(scenario_output, "w", newline="", encoding="utf-8"),
+    }
+    if directive_output:
+        outputs_to_open["directive"] = open(directive_output, "w", newline="", encoding="utf-8")
 
-        bare_writer.writeheader()
-        scenario_writer.writeheader()
+    try:
+        writers = {
+            name: csv.DictWriter(fh, fieldnames=output_fields, quoting=csv.QUOTE_ALL)
+            for name, fh in outputs_to_open.items()
+        }
+        for w in writers.values():
+            w.writeheader()
 
-        for i, row in enumerate(reader, start=1):
-            credit_risk = row.get("credit_risk", "Unknown")
+        with open(args.input, newline="", encoding="utf-8") as infile:
+            reader = csv.DictReader(infile)
 
-            bare_writer.writerow({
-                "case_id":     i,
-                "narrative":   build_narrative(row, BARE_OPENING),
-                "credit_risk": credit_risk,
-            })
+            for i, row in enumerate(reader, start=1):
+                credit_risk = row.get("credit_risk", "Unknown")
 
-            scenario_writer.writerow({
-                "case_id":     i,
-                "narrative":   build_narrative(row, SCENARIO_OPENING),
-                "credit_risk": credit_risk,
-            })
+                writers["bare"].writerow({
+                    "case_id":     i,
+                    "narrative":   build_narrative(row, BARE_OPENING),
+                    "credit_risk": credit_risk,
+                })
 
-            if i % 100 == 0:
-                print(f"  Processed {i} rows...")
+                writers["scenario"].writerow({
+                    "case_id":     i,
+                    "narrative":   build_narrative(row, SCENARIO_OPENING),
+                    "credit_risk": credit_risk,
+                })
 
-    print(f"\nDone. 1000 narratives written to:")
-    print(f"  {bare_output}")
-    print(f"  {scenario_output}")
+                if directive_opening:
+                    writers["directive"].writerow({
+                        "case_id":     i,
+                        "narrative":   build_narrative(row, directive_opening),
+                        "credit_risk": credit_risk,
+                    })
+
+                if i % 100 == 0:
+                    print(f"  Processed {i} rows...")
+
+    finally:
+        for fh in outputs_to_open.values():
+            fh.close()
+
+    outputs_written = [bare_output, scenario_output]
+    if directive_output:
+        outputs_written.append(directive_output)
+
+    print(f"\nDone. {i} narratives written to:")
+    for path in outputs_written:
+        print(f"  {path}")
 
 
 if __name__ == "__main__":
