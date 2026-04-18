@@ -6,8 +6,11 @@ normative cue weights. These weights form the left side of the Brunswik Lens
 Model — the empirically correct way to weight each cue to predict credit risk.
 
 Outputs:
-  - normative_cue_weights.csv   : cue weights ranked by importance
-  - normative_weights_report.txt: human-readable summary for the paper
+  - normative_cue_weights.csv      : cue weights ranked by importance
+  - normative_weights_report.txt   : human-readable summary for the paper
+  - normative_propensities.csv     : per-case predicted probabilities (Good) from the
+                                     fitted model, used for propensity correlation in
+                                     analyze_weights.py
 
 Usage:
     python normative_weights.py --input german_credit_decoded.csv
@@ -19,7 +22,7 @@ import pandas as pd
 import numpy as np
 from sklearn.linear_model import LogisticRegression
 from sklearn.preprocessing import StandardScaler
-from sklearn.model_selection import cross_val_score
+from sklearn.model_selection import cross_val_score, cross_val_predict
 from sklearn.pipeline import Pipeline
 
 # ── MAIN ──────────────────────────────────────────────────────────────────────
@@ -91,14 +94,12 @@ def main():
 
     coef_df["original_attribute"] = coef_df["feature"].apply(get_original_attr)
 
-    attr_weights = (
-        coef_df.groupby("original_attribute")["abs_coefficient"]
-        .max()
-        .reset_index()
-        .rename(columns={"abs_coefficient": "normative_weight"})
-        .sort_values("normative_weight", ascending=False)
-        .reset_index(drop=True)
-    )
+    # For each original attribute, find the one-hot column with the largest
+    # absolute coefficient and preserve its signed coefficient.
+    idx_max = coef_df.groupby("original_attribute")["abs_coefficient"].idxmax()
+    attr_weights = coef_df.loc[idx_max, ["original_attribute", "coefficient", "abs_coefficient"]].copy()
+    attr_weights = attr_weights.rename(columns={"abs_coefficient": "normative_weight"})
+    attr_weights = attr_weights.sort_values("normative_weight", ascending=False).reset_index(drop=True)
 
     attr_weights["rank"]           = attr_weights.index + 1
     attr_weights["weight_tier"]    = pd.cut(
@@ -107,9 +108,23 @@ def main():
         labels=["LOW", "MEDIUM", "HIGH"]
     )
 
+    # ── PROPENSITY SCORES ────────────────────────────────────────────────────
+    # Cross-validated predicted probabilities of Good (class=1) per case.
+    # Using cross_val_predict so propensities are out-of-fold (not in-sample),
+    # matching the approach used in analyze_weights.py for LLM propensities.
+    norm_proba = cross_val_predict(pipeline, X_encoded, y, cv=5, method="predict_proba")
+    propensity_df = pd.DataFrame({
+        "case_id":            range(1, len(df) + 1),
+        "normative_prob_good": norm_proba[:, 1],   # P(Good) per case
+        "credit_risk":        df["credit_risk"].values,
+    })
+
     # ── SAVE OUTPUTS ─────────────────────────────────────────────────────────
-    attr_weights.to_csv("normative_cue_weights.csv", index=False)
-    print("Saved: normative_cue_weights.csv\n")
+    attr_weights[["original_attribute", "coefficient", "normative_weight", "rank", "weight_tier"]].to_csv("data/normative_cue_weights.csv", index=False)
+    print("Saved: data/normative_cue_weights.csv")
+
+    propensity_df.to_csv("data/normative_propensities.csv", index=False)
+    print("Saved: data/normative_propensities.csv\n")
 
     # ── PRINT REPORT ─────────────────────────────────────────────────────────
     report_lines = []
@@ -144,9 +159,9 @@ def main():
     report_text = "\n".join(report_lines)
     print(report_text)
 
-    with open("normative_weights_report.txt", "w") as f:
+    with open("data/normative_weights_report.txt", "w") as f:
         f.write(report_text)
-    print("\nSaved: normative_weights_report.txt")
+    print("\nSaved: data/normative_weights_report.txt")
 
 
 if __name__ == "__main__":

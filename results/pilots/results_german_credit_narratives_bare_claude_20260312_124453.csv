@@ -1,0 +1,66 @@
+"case_id","model","condition","credit_risk","classification","correct","eval_input_tokens","eval_output_tokens","scoring_input_tokens","scoring_output_tokens","timestamp","response_text","cue_weights_json","error"
+"1","anthropic/claude-haiku-4-5","bare","Good","Bad","False","298","645","941","247","2026-03-12T12:45:05.111897","# Credit Risk Assessment: BAD
+
+## Classification Rationale
+
+This applicant presents **significant credit risk** despite some stabilizing factors. The combination of critical financial indicators outweighs positive elements.
+
+## Heavily Weighted Risk Factors
+
+**1. Negative Checking Account Balance (< 0 DM)**
+- Primary concern: indicates immediate liquidity crisis
+- Suggests inability to manage basic cash flow
+- Most predictive of default behavior in credit scoring models
+- Red flag for financial distress
+
+**2. Critical Credit History**
+- Existing credits with payment problems (""critical account"")
+- Other credits outside this bank indicate broader debt management issues
+- Pattern suggests chronic difficulty meeting obligations
+- Multiple creditors signal overextension
+
+**3. Age (67) + Loan Duration (6 months)**
+- Applicant near or at retirement age
+- Income likely to decrease or cease soon
+- Short loan term suggests lender may be attempting recovery before retirement
+- Raises questions about post-retirement repayment capacity
+
+**4. Unknown Savings Status / No Savings Account**
+- No financial cushion for emergencies
+- Indicates lifelong poor savings discipline
+- Vulnerability to any income disruption
+
+## Moderately Mitigating Factors (But Insufficient)
+
+**Employment Stability (≥7 years, skilled employee)**
+- Positive: job security is real
+- However: insufficient to overcome acute financial distress
+- Age factor undermines long-term reliability
+
+**Property Ownership & Housing**
+- Provides some collateral
+- Unlikely to be liquidated to repay small 1,169 DM loan
+- Limited practical value in recovery scenario
+
+**Low Installment Rate (4% of income)**
+- Manageable on paper
+- Credibility weakened by existing payment problems
+
+## Discounted or Neutral Factors
+
+- **Telephone registration**: Minimal predictive value
+- **Number of dependents (1)**: Adds expense burden rather than supporting capacity
+- **Foreign worker status**: Not inherently predictive without other context
+- **Existing credits at bank (2)**: Suggests some history, but quality matters more than quantity
+
+## Additional Considerations
+
+- **Behavioral pattern**: The combination of overdraft, critical accounts, and multiple creditors indicates chronic financial mismanagement rather than temporary hardship
+- **Loan purpose (radio/television)**: Discretionary spending on luxury items despite financial distress suggests poor financial judgment
+- **Probability of post-retirement default**: High likelihood of inability to service debt after retirement
+
+## Conclusion
+
+While the applicant has employment stability and owns property, the **acute financial distress (negative balance), documented payment failures, advanced age, and poor lifetime financial management** create unacceptable default risk. The 6-month loan term may indicate the bank already recognizes the time-sensitive risk profile.
+
+**Recommendation**: Decline or require significant security/guarantor.","{""checking_account_status"": ""HIGH"", ""duration_months"": ""HIGH"", ""credit_history"": ""HIGH"", ""purpose"": ""MEDIUM"", ""credit_amount"": ""NOT_MENTIONED"", ""savings_account_bonds"": ""HIGH"", ""employment_since"": ""MEDIUM"", ""installment_rate_pct"": ""MEDIUM"", ""personal_status_sex"": ""NOT_MENTIONED"", ""other_debtors_guarantors"": ""NOT_MENTIONED"", ""present_residence_since"": ""NOT_MENTIONED"", ""property"": ""MEDIUM"", ""age_years"": ""HIGH"", ""other_installment_plans"": ""MEDIUM"", ""housing"": ""MEDIUM"", ""num_existing_credits"": ""LOW"", ""job"": ""MEDIUM"", ""num_dependents"": ""LOW"", ""telephone"": ""DISCOUNTED"", ""foreign_worker"": ""DISCOUNTED""}",""

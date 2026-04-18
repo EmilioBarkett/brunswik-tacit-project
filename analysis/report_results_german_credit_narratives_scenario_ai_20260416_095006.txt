@@ -1,0 +1,97 @@
+========================================================================
+CUE UTILIZATION ALIGNMENT REPORT
+Model     : x-ai/grok-4.1-fast
+Condition : scenario
+Cases     : 1000  (total submitted: 1000)
+Generated : 2026-04-18 16:24:53
+========================================================================
+
+── SECTION 1: SUMMARY METRICS ───────────────────────────────────────
+
+  Metric                              Value        Normative benchmark
+  --------------------------------------------------------------
+  Output accuracy                     45.4        % 75.1% (logistic regression)
+  Cohen's kappa                       -0.001       1.0 = perfect agreement
+  Good classification rate            38.6        % 70.0% (dataset base rate)
+  ROC AUC (cue-driven, CV)            0.891        0.751 (normative model)
+  Cosine similarity [PRIMARY]         -0.283       1.0 = identical weighting
+  Pearson r (coefficients)            -0.264       p=0.260
+  Propensity correlation              -0.046       normative vs LLM P(Good)
+  Spearman ρ (rank, supplementary)    0.042        p=0.860
+
+── SECTION 2: REGRESSION COEFFICIENT COMPARISON ────────────────────
+
+  Attribute                         Norm tier  Norm rank   LLM rank    Norm coef   LLM coef
+  ------------------------------------------------------------------------------------
+  credit_history                    MEDIUM     #1          #5             0.7921    -0.4091
+  num_dependents                    LOW        #2          #20           -0.2358    -0.0584
+  savings_account_bonds             MEDIUM     #3          #6             0.2164    -0.4022
+  housing                           LOW        #4          #17           -0.1342     0.1181
+  personal_status_sex               MEDIUM     #5          #4             0.1221    -0.4683
+  duration_months                   HIGH       #6          #8            -0.1204     0.3931
+  age_years                         MEDIUM     #7          #2             0.1193     0.5434
+  checking_account_status           HIGH       #8          #15           -0.1032    -0.2141
+  other_installment_plans           LOW        #9          #7             0.0985     0.3942
+  employment_since                  MEDIUM     #10         #19           -0.0936    -0.0704
+  telephone                         LOW        #11         #13           -0.0854    -0.2377
+  foreign_worker                    LOW        #12         #1             0.0778    -1.3501
+  job                               LOW        #13         #11            0.0764    -0.2773
+  purpose                           MEDIUM     #14         #18            0.0762     0.0789
+  credit_amount                     HIGH       #15         #14            0.0760    -0.2361
+  property                          MEDIUM     #16         #12           -0.0750     0.2557
+  other_debtors_guarantors          MEDIUM     #17         #10           -0.0700    -0.3254
+  present_residence_since           LOW        #18         #16            0.0640     0.1181
+  num_existing_credits              LOW        #19         #3            -0.0320     0.5188
+  installment_rate_pct              HIGH       #20         #9            -0.0199     0.3874
+
+  Cases used: 1000
+
+── SECTION 3: DESCRIPTIVE TIER COMPARISON ──────────────────────────
+
+  Attribute                         Norm     LLM modal          Match   %HIGH   %NONE
+  ----------------------------------------------------------------------------------
+  checking_account_status           HIGH     HIGH               ✓       56.3    1.1
+  installment_rate_pct              HIGH     DISCOUNTED         ✗       38.4    0.0
+  credit_amount                     HIGH     LOW                ✗       1.6     7.2
+  duration_months                   HIGH     LOW                ✗       4.0     6.1
+  purpose                           MEDIUM   LOW                ✗       2.5     5.4
+  credit_history                    MEDIUM   HIGH               ✗       77.9    0.0
+  savings_account_bonds             MEDIUM   HIGH               ✗       36.0    1.2
+  employment_since                  MEDIUM   HIGH               ✗       40.6    0.8
+  other_debtors_guarantors          MEDIUM   LOW                ✗       9.1     7.2
+  property                          MEDIUM   DISCOUNTED         ✗       20.4    1.1
+  age_years                         MEDIUM   LOW                ✗       12.1    3.0
+  personal_status_sex               MEDIUM   LOW                ✗       0.6     11.4
+  num_existing_credits              LOW      HIGH               ✗       41.0    0.2
+  housing                           LOW      DISCOUNTED         ✗       20.9    1.3
+  foreign_worker                    LOW      HIGH               ✗       49.9    1.7
+  other_installment_plans           LOW      LOW                ✓       11.4    4.8
+  num_dependents                    LOW      LOW                ✓       0.5     3.5
+  job                               LOW      HIGH               ✗       38.2    0.1
+  telephone                         LOW      LOW                ✓       15.4    1.7
+  present_residence_since           LOW      MEDIUM             ✗       9.9     0.9
+
+  Tier match rate : 4/20 (20.0%)
+  Spearman ρ      : 0.087  p=0.714  (supplementary)
+
+  Over-weighted cues (LLM > normative):
+    credit_history                    norm=MEDIUM   llm=HIGH               (norm rank #6)
+    savings_account_bonds             norm=MEDIUM   llm=HIGH               (norm rank #7)
+    employment_since                  norm=MEDIUM   llm=HIGH               (norm rank #8)
+    num_existing_credits              norm=LOW      llm=HIGH               (norm rank #13)
+    foreign_worker                    norm=LOW      llm=HIGH               (norm rank #15)
+    job                               norm=LOW      llm=HIGH               (norm rank #18)
+    present_residence_since           norm=LOW      llm=MEDIUM             (norm rank #20)
+
+  Under-weighted cues (LLM < normative):
+    installment_rate_pct              norm=HIGH     llm=DISCOUNTED         (norm rank #2)
+    credit_amount                     norm=HIGH     llm=LOW                (norm rank #3)
+    duration_months                   norm=HIGH     llm=LOW                (norm rank #4)
+    purpose                           norm=MEDIUM   llm=LOW                (norm rank #5)
+    other_debtors_guarantors          norm=MEDIUM   llm=LOW                (norm rank #9)
+    property                          norm=MEDIUM   llm=DISCOUNTED         (norm rank #10)
+    age_years                         norm=MEDIUM   llm=LOW                (norm rank #11)
+    personal_status_sex               norm=MEDIUM   llm=LOW                (norm rank #12)
+    housing                           norm=LOW      llm=DISCOUNTED         (norm rank #14)
+
+========================================================================

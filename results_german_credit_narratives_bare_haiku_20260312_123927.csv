@@ -1,2 +1,0 @@
-"case_id","model","condition","credit_risk","classification","correct","eval_input_tokens","eval_output_tokens","scoring_input_tokens","scoring_output_tokens","timestamp","response_text","cue_weights_json","error"
-"1","anthropic/claude-haiku-4-5","bare","Good","API_ERROR","UNKNOWN","0","0","0","0","2026-03-12T12:39:37.898145","","{""error"": ""SKIPPED \u2014 eval failed""}","Error code: 404 - {'type': 'error', 'error': {'type': 'not_found_error', 'message': 'model: anthropic/claude-haiku-4-5'}, 'request_id': 'req_011CYyg4ChNyxZ8iKZVHPFB2'}"

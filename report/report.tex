@@ -1,0 +1,180 @@
+\documentclass[midterm]{sparreport}
+\usepackage{natbib}
+\usepackage{booktabs}
+\usepackage{array}
+
+% ============================================================================
+% METADATA
+% ============================================================================
+\title{Cue Utilization and Tacit Knowledge in LLM Decision-Making}
+
+\author{
+  \textbf{Niklas Weller}\\
+  \texttt{niklas.weller@unisg.ch}\\
+  University of St. Gallen
+  \and
+  \textbf{Emilio Barkett}\\
+  \texttt{eab2291@columbia.edu}\\
+  Columbia University
+}
+
+\sparround{Spring 2026}
+
+% ============================================================================
+\begin{document}
+\maketitle
+
+% ============================================================================
+% ABSTRACT
+% ============================================================================
+\begin{abstract}
+As large language models (LLMs) are increasingly deployed in high-stakes decision domains, understanding and auditing their implicit decision criteria becomes critical for AI alignment. This project applies the Brunswik Lens Model — a formal framework for decomposing judgment into normative and observed cue utilization — to evaluate how LLMs weight applicant characteristics when making credit risk decisions. Using the German Credit Dataset, we first derive a normative cue weighting via logistic regression, establishing a ground-truth benchmark for optimal cue utilization across 20 applicant attributes. We then present credit profiles as natural language narratives to multiple LLMs (Claude Haiku 4.5, Gemini 2.5 Flash) and extract their implicit cue weights from their reasoning using a structured scoring pipeline. Preliminary results show systematic deviations: both models over-weight narrative and demographic cues and under-weight quantitative financial signals relative to the normative model. We further test whether explicit policy directives in the prompt can externally correct these deviations. We find that directives successfully shift individual cue weights but do not produce clean, isolated effects, raising questions about the controllability of LLM tacit judgment.
+\end{abstract}
+
+\keywords{Brunswik Lens Model \and cue utilization \and LLM decision-making \and tacit knowledge \and AI alignment \and credit risk}
+
+% ============================================================================
+% INTRODUCTION
+% ============================================================================
+\section{Introduction}
+
+A central challenge in AI alignment is that models trained on large corpora may develop implicit decision criteria that are difficult to inspect, predict, or correct from the outside \citep{doshi2017interpretability}. This problem is most acute in high-stakes, structured decision domains — credit, hiring, medical triage — where models are increasingly used as decision aids or autonomous decision-makers, yet their internal weighting of relevant evidence remains opaque.
+
+This project addresses that challenge through the lens of judgment analysis. The Brunswik Lens Model \citep{Brunswik-1956-lens} provides a formal framework for decomposing human (or algorithmic) judgment into two components: the \textit{ecological validity} of cues in the environment (how well each cue actually predicts the criterion), and the \textit{cue utilization} of the judge (how heavily they weight each cue in practice). Alignment between the two — known as \textit{achievement} — determines judgment quality. Deviations indicate tacit knowledge failures: the judge implicitly relies on cues that do not predict the outcome, or ignores cues that do.
+
+We apply this framework to LLMs acting as credit officers on the German Credit Dataset \citep{hofmann1994german} — a benchmark containing 1000 loan applications described by 20 attributes, with ground-truth credit risk labels (Good/Bad). We derive a normative cue weighting from logistic regression on the ground truth, then present each application as a natural language narrative to LLMs and extract their implicit cue weights from their reasoning. The core research question is twofold: (1) how closely does LLM cue utilization track the normative model, and (2) can explicit policy directives embedded in the prompt externally shift these implicit weights?
+
+Success for this project would mean: demonstrating measurable, systematic patterns of cue misalignment across models; and establishing whether directive-based prompting is a viable mechanism for correcting those patterns — or whether tacit judgment resists external instruction.
+
+% ============================================================================
+% METHODOLOGY
+% ============================================================================
+\section{Methodology}
+
+\subsection{Dataset and Normative Model}
+
+We use the Statlog German Credit Dataset \citep{hofmann1994german}, comprising 1000 loan applications described by 20 attributes spanning financial, demographic, and behavioral characteristics. Ground-truth labels classify each applicant as a Good (700 cases) or Bad (300 cases) credit risk.
+
+A normative cue weighting is derived by fitting an L2-regularized logistic regression model to the full dataset using 5-fold cross-validation. Standardized coefficients (absolute values) serve as the normative weights, reflecting each cue's marginal predictive contribution. The model achieves a cross-validated accuracy of 75.1\% ($\pm$ 1.2\%), establishing the performance ceiling for optimal cue utilization. Cues are classified into three tiers: HIGH ($|w| \geq 0.33$), MEDIUM ($0.13 \leq |w| < 0.33$), and LOW ($|w| < 0.13$). The four highest-weighted cues are checking account status (0.453), installment rate as a percentage of disposable income (0.363), credit amount (0.356), and loan duration in months (0.334).
+
+\subsection{Narrative Generation}
+
+Each application is converted into a natural language narrative for LLM evaluation. We implement two prompt conditions:
+
+\textbf{Bare condition}: The applicant profile is presented as a flat bulleted list with no framing, preceded only by ``An applicant has the following profile.'' All 20 attributes are listed with equal visual weight, consistent with the representative design principle of the Lens Model \citep{Brunswik-1956-lens}.
+
+\textbf{Scenario condition}: The LLM is addressed as an experienced credit officer at a German bank and asked to assess whether the applicant is a Good or Bad credit risk based on the profile and any relevant domain knowledge they bring to the assessment.
+
+Both conditions use the same closing prompt, asking the model to: (1) state a classification, (2) explain which factors it weighted most heavily and why, (3) note which factors it discounted and why, and (4) identify any knowledge drawn from outside the stated profile.
+
+\textbf{Directive condition}: A variant of the scenario condition in which an explicit policy statement is injected into the prompt opening, directly before the applicant profile. For example: \textit{``Note the following bank policy: A registered telephone number is a strong indicator of financial stability.''} This condition tests whether the LLM's implicit cue weighting can be externally shifted by policy-like instructions.
+
+\subsection{Evaluation Pipeline}
+
+Narratives are sent to LLMs via the OpenRouter API. Each case involves two sequential API calls: (1) an \textit{evaluation call}, in which the target model reasons through the credit decision; and (2) a \textit{scoring call}, in which a separate model (Claude Haiku 4.5) extracts structured cue weights from the reasoning text. The scoring model classifies each of the 20 attributes into one of five tiers: HIGH, MEDIUM, LOW, DISCOUNTED, or NOT\_MENTIONED, returned as a JSON object.
+
+\subsection{Analysis}
+
+Two complementary analyses are applied. First, a \textit{descriptive tier comparison} aggregates the scoring model's tier labels across all cases per attribute, computing the modal tier and proportion rated HIGH. These are compared against the normative tier for each cue, yielding a tier match rate and a Spearman rank correlation ($\rho$) between normative rank and LLM mean weight rank. Second, a \textit{regression-based analysis} fits a logistic regression to the LLM's binary classifications using the original 20 cue values as predictors, producing LLM-implied coefficients that can be directly compared to the normative weights via Spearman $\rho$.
+
+% ============================================================================
+% PRELIMINARY RESULTS
+% ============================================================================
+\section{Preliminary Results}
+
+\subsection{Normative Benchmark}
+
+The normative logistic regression achieves 75.1\% accuracy under 5-fold cross-validation, serving as the upper bound for cue-aligned judgment. The HIGH-tier cues — checking account status, installment rate, credit amount, and loan duration — account for the bulk of predictive signal. The eight MEDIUM-tier cues contribute moderate signal, while the eight LOW-tier cues (including telephone registration and years at current residence) are near-noise predictors.
+
+\subsection{LLM Accuracy}
+
+Table~\ref{tab:accuracy} summarises accuracy across conditions and models for runs with $N \geq 100$.
+
+\begin{table}[htbp]
+  \centering
+  \caption{LLM classification accuracy by model and condition ($N = 100$ unless noted).}
+  \label{tab:accuracy}
+  \begin{tabular}{llcc}
+    \toprule
+    Model & Condition & $N$ & Accuracy \\
+    \midrule
+    Normative (logistic regression) & --- & 1000 & 75.1\% \\
+    Gemini 2.5 Flash & Bare & 100 & 57.0\% \\
+    Claude Haiku 4.5 & Scenario & 100 & 32.0\% \\
+    Claude Haiku 4.5 & Directive (telephone amplify) & 100 & 34.0\% \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+All LLMs fall well below the normative benchmark. Notably, Claude Haiku 4.5 under the scenario condition (32.0\%) and directive condition (34.0\%) performs near chance, suggesting that the scenario framing may induce a conservative bias toward Bad classifications — the model classifies the majority of cases as Bad regardless of the underlying profile, consistent with a base-rate neglect failure.
+
+\subsection{Cue Weight Deviations}
+
+Across both models and conditions, a consistent pattern of cue misalignment emerges. Table~\ref{tab:cues} summarises the most salient deviations for Claude Haiku 4.5 under the scenario condition ($N = 100$).
+
+\begin{table}[htbp]
+  \centering
+  \caption{Selected cue weight deviations, Claude Haiku 4.5 scenario condition ($N=100$). Modal LLM tier and proportion rated HIGH shown alongside normative tier and rank.}
+  \label{tab:cues}
+  \begin{tabular}{lcccc}
+    \toprule
+    Attribute & Norm Tier & Norm Rank & LLM Modal Tier & \% HIGH \\
+    \midrule
+    \textit{Over-weighted cues} & & & & \\
+    Checking account status   & HIGH   & 1  & HIGH & 91\% \\
+    Credit history            & MEDIUM & 6  & HIGH & 50\% \\
+    Savings / bonds           & MEDIUM & 7  & HIGH & 86\% \\
+    Foreign worker            & LOW    & 15 & HIGH & 53\% \\
+    \midrule
+    \textit{Under-weighted cues} & & & & \\
+    Installment rate (\% income) & HIGH & 2 & MEDIUM & 9\% \\
+    Credit amount (DM)           & HIGH & 3 & MEDIUM & 9\% \\
+    Loan duration (months)       & HIGH & 4 & MEDIUM & 22\% \\
+    Personal status / sex        & MEDIUM & 12 & NOT\_MENTIONED & 2\% \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+The pattern is striking: LLMs correctly identify checking account status as the dominant cue, but systematically conflate narrative-salient cues (credit history, savings) with high importance while discounting quantitative financial signals (installment rate, credit amount, duration). Foreign worker status — a normatively LOW cue — is rated HIGH in more than half of cases, suggesting a demographic bias not present in the normative model. Similar patterns are observed in Gemini 2.5 Flash (bare condition, $N=100$): credit history reaches HIGH in 83\% of cases (norm rank \#6), while loan duration is not mentioned in 76\% of cases (norm rank \#4). Spearman $\rho$ between normative rank and LLM weight rank is 0.437 ($p = 0.054$) for Gemini (descriptive method) and 0.191 ($p = 0.420$, regression method), indicating weak and mostly non-significant alignment with the normative weighting.
+
+\subsection{Directive Manipulation}
+
+To test whether explicit instructions can override implicit cue weights, we inject a policy directive amplifying a normatively LOW cue (telephone registration, norm rank \#19) into the scenario opening and evaluate Claude Haiku 4.5 on 100 cases. The directive reads: \textit{``A registered telephone number is a strong indicator of financial stability.''}
+
+The directive successfully shifts telephone from its baseline (LOW, 3\% HIGH) to HIGH in 70\% of cases under the directive condition. However, the effect is not isolated: foreign worker status remains rated HIGH in over half of cases, and credit history becomes the top-weighted cue (above even checking account status) in the regression-based analysis. The directive appears to add a layer of attentional salience on top of the model's pre-existing bias structure rather than cleanly overriding it. Classification accuracy (34\%) is essentially unchanged from the scenario baseline (32\%), suggesting that the prompted shift in stated cue reasoning does not translate to a corresponding shift in final judgments.
+
+% ============================================================================
+% CHALLENGES & OPEN QUESTIONS
+% ============================================================================
+\section{Challenges \& Open Questions}
+
+\textbf{Cue weight extraction via LLM.} The scoring step — using a language model to extract cue weights from another model's reasoning — introduces a potential confound: the scoring model may itself have systematic tendencies in how it interprets and classifies reasoning text. This is a meta-evaluation problem without a fully satisfactory solution. We partially address this by using a fixed scoring model (Claude Haiku 4.5) across all conditions, ensuring any scoring bias is constant.
+
+\textbf{Sample size constraints.} Most results reported here are based on $N=100$, which limits statistical power — the Spearman $\rho$ values do not reach conventional significance thresholds. Regression-based analysis requires $N \geq 100$ and produces unreliable coefficients for cues with low variance in LLM ratings. Full 1000-case runs are needed for robust inference.
+
+\textbf{Directive non-isolation.} The directive manipulation shifts target cue weights, but also appears to shift non-target cues. This suggests that the LLM's cue weighting is not modular — instructions about one cue may alter the attention structure across the full profile. Understanding the mechanism of this spillover is an open question.
+
+\textbf{Base-rate neglect under scenario framing.} Claude Haiku 4.5's accuracy of 32\% in the scenario condition is close to the proportion of Bad cases in the dataset (30\%), suggesting the model may be defaulting toward Bad classifications under the credit officer framing. Whether this is caused by the roleplay framing, the closing prompt structure, or a feature of the model itself remains unclear.
+
+% ============================================================================
+% NEXT STEPS
+% ============================================================================
+\section{Next Steps}
+
+\textbf{Expanding the model set.} The priority for the second half of the program is replicating the evaluation pipeline across a broader range of LLMs, including GPT-4o (OpenAI), Claude Sonnet (Anthropic), and Gemini Pro (Google DeepMind). Cross-model comparison will establish whether the observed cue misalignment patterns are model-specific or reflect shared training dynamics.
+
+\textbf{Corrective directive prompts.} Rather than single-cue amplification, the next directive condition will encode the full delta between observed LLM baseline weights and normative weights into the prompt — explicitly instructing the model to down-weight cues it is known to over-rely on (credit history, foreign worker status) and up-weight cues it under-uses (credit amount, loan duration, installment rate). This tests whether a calibrated, multi-cue correction can close the alignment gap.
+
+\textbf{Systematic directive experiment.} We will extend the directive manipulation to include: (1) amplification of HIGH cues (congruent with normative model), (2) amplification of LOW cues (incongruent), (3) suppression of HIGH cues, and (4) suppression of LOW cues. Comparing accuracy and Spearman $\rho$ across these conditions will produce a structured account of how directive framing interacts with the LLM's pre-existing bias.
+
+\textbf{Scale-up to full dataset.} All major conditions will be run on the full 1000-case dataset to enable robust regression-based analysis and reliable Spearman correlations. This will also allow investigation of whether cue misalignment is uniform or case-specific (e.g., concentrated in difficult borderline cases).
+
+\textbf{Deprioritised.} We will likely set aside fine-grained analysis of the bare condition across all models, as the scenario and directive conditions are more directly relevant to the research question about controllability.
+
+% ============================================================================
+% BIBLIOGRAPHY
+% ============================================================================
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\end{document}

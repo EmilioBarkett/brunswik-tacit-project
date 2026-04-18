@@ -107,8 +107,8 @@ import csv
 # ---------------------------------------------------------------------------
 # INPUT / OUTPUT FILE PATHS — adjust if needed
 # ---------------------------------------------------------------------------
-INPUT_FILE  = "german.data"
-OUTPUT_FILE = "german_credit_decoded.csv"
+INPUT_FILE  = "data/german.data"
+OUTPUT_FILE = "data/german_credit_decoded.csv"
 
 # ---------------------------------------------------------------------------
 # DECODING DICTIONARIES (one per categorical attribute)

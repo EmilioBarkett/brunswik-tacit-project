@@ -1,0 +1,59 @@
+\begin{thebibliography}{10}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Aletras et~al.(2016)Aletras, Tsarapatsanis, Preo{\c{t}}iuc-Pietro, and Lampos]{aletras2016predicting}
+Aletras, N., Tsarapatsanis, D., Preo{\c{t}}iuc-Pietro, D., and Lampos, V.
+\newblock Predicting judicial decisions of the european court of human rights: A natural language processing perspective.
+\newblock \emph{PeerJ Computer Science}, 2:\penalty0 e93, 2016.
+
+\bibitem[Binz \& Schulz(2023)Binz and Schulz]{binz2023using}
+Binz, M. and Schulz, E.
+\newblock Using cognitive psychology to understand {GPT}-3.
+\newblock \emph{Proceedings of the National Academy of Sciences}, 120\penalty0 (6), 2023.
+
+\bibitem[Brunswik(1952)]{brunswik1952conceptual}
+Brunswik, E.
+\newblock \emph{The Conceptual Framework of Psychology}.
+\newblock University of Chicago Press, 1952.
+
+\bibitem[Hammond et~al.(1964)Hammond, Hursch, and Todd]{hammond1964psychology}
+Hammond, K.~R., Hursch, C.~J., and Todd, F.~J.
+\newblock Analyzing the components of clinical inference.
+\newblock \emph{Psychological Review}, 71\penalty0 (6):\penalty0 438--456, 1964.
+
+\bibitem[Hofmann(1994)]{hofmann1994statlog}
+Hofmann, H.
+\newblock {Statlog (German Credit Data)}.
+\newblock \url{https://doi.org/10.24432/C5NC77}, 1994.
+\newblock UCI Machine Learning Repository.
+
+\bibitem[Nonaka(1994)]{nonaka1994dynamic}
+Nonaka, I.
+\newblock A dynamic theory of organizational knowledge creation.
+\newblock \emph{Organization Science}, 5\penalty0 (1):\penalty0 14--37, 1994.
+
+\bibitem[Polanyi(1966)]{polanyi1966tacit}
+Polanyi, M.
+\newblock \emph{The Tacit Dimension}.
+\newblock Doubleday, 1966.
+
+\bibitem[Sorensen et~al.(2024)Sorensen, Bhatt, Gordon, Hashimoto, Moschella, Radford, Reimers, Smith, Talat, and Zettlemoyer]{sorensen2024roadmap}
+Sorensen, T., Bhatt, L., Gordon, M., Hashimoto, T., Moschella, L., Radford, A., Reimers, N., Smith, N.~A., Talat, Z., and Zettlemoyer, L.
+\newblock A roadmap to pluralistic alignment.
+\newblock \emph{arXiv preprint arXiv:2402.05070}, 2024.
+
+\bibitem[Tyler(1988)]{tyler1988psychology}
+Tyler, T.~R.
+\newblock \emph{Why People Obey the Law}.
+\newblock Yale University Press, 1988.
+
+\bibitem[Wieringa(2021)]{wieringa2021means}
+Wieringa, M.
+\newblock What to account for when accounting for algorithms: A systematic literature review on algorithmic accountability.
+\newblock \emph{Proceedings of the 2020 Conference on Fairness, Accountability, and Transparency}, pp.\  1--18, 2021.
+
+\end{thebibliography}

@@ -1,0 +1,45 @@
+"case_id","model","condition","credit_risk","classification","correct","eval_input_tokens","eval_output_tokens","scoring_input_tokens","scoring_output_tokens","timestamp","response_text","cue_weights_json","error"
+"1","minimax/minimax-m2.7","bare","Good","API_ERROR","UNKNOWN","0","0","0","0","2026-04-16T11:52:44.280278","","{""error"": ""SKIPPED \u2014 eval failed""}","Model returned None content"
+"2","minimax/minimax-m2.7","bare","Bad","API_ERROR","UNKNOWN","0","0","0","0","2026-04-16T11:54:23.894958","","{""error"": ""SKIPPED \u2014 eval failed""}","Model returned None content"
+"3","minimax/minimax-m2.7","bare","Good","API_ERROR","UNKNOWN","0","0","0","0","2026-04-16T11:55:54.598505","","{""error"": ""SKIPPED \u2014 eval failed""}","Model returned None content"
+"4","minimax/minimax-m2.7","bare","Good","Good","True","306","1024","464","278","2026-04-16T11:57:01.491987","**Classification:** **Good credit risk**
+
+---
+
+### Why the applicant is assessed as “Good”
+
+| Factor (from the profile) | Typical weight in credit‑scoring models | How it applies to this applicant |
+|---------------------------|------------------------------------------|-----------------------------------|
+| **Credit history** – existing credits paid back duly till now | **Very high** (often the single most predictive variable) | The applicant has a clean repayment record, which is a strong positive signal. |
+| **Installment rate (% of disposable income) = 2 %** | **High** (a low monthly burden is a key ability‑to‑pay metric) | Only 2 % of disposable income is needed for the loan payment – well","{""checking_account_status"": ""NOT_MENTIONED"", ""duration_months"": ""NOT_MENTIONED"", ""credit_history"": ""HIGH"", ""purpose"": ""NOT_MENTIONED"", ""credit_amount"": ""NOT_MENTIONED"", ""savings_account_bonds"": ""NOT_MENTIONED"", ""employment_since"": ""NOT_MENTIONED"", ""installment_rate_pct"": ""HIGH"", ""personal_status_sex"": ""NOT_MENTIONED"", ""other_debtors_guarantors"": ""NOT_MENTIONED"", ""present_residence_since"": ""NOT_MENTIONED"", ""property"": ""NOT_MENTIONED"", ""age_years"": ""NOT_MENTIONED"", ""other_installment_plans"": ""NOT_MENTIONED"", ""housing"": ""NOT_MENTIONED"", ""num_existing_credits"": ""NOT_MENTIONED"", ""job"": ""NOT_MENTIONED"", ""num_dependents"": ""NOT_MENTIONED"", ""telephone"": ""NOT_MENTIONED"", ""foreign_worker"": ""NOT_MENTIONED""}",""
+"5","minimax/minimax-m2.7","bare","Bad","Bad","True","286","953","1057","259","2026-04-16T11:57:28.620241","**Classification: Bad credit risk**
+
+**Reasoning and factor weighting:**
+
+1. **Most heavily weighted factors:**
+   - **Checking account status (< 0 DM):** In German credit scoring systems (like the one this profile appears to follow, given the DM currency and attributes), the checking account status is often the single most important predictor. A negative balance indicates existing financial strain or poor money management, which is a strong red flag.
+   - **Credit history (delay in paying off in the past):** Past behavior with credit is a direct indicator of future reliability. A history of delayed payments suggests a higher likelihood of default.
+   - **Savings / bonds (< 100 DM):** Very low savings indicate a lack of financial buffer to handle unexpected expenses or income disruptions, increasing vulnerability to default.
+
+2. **Other significant negative factors:**
+   - **Employment stability (1 to < 4 years):** While not the worst, only 1–4 years of stability is relatively short and suggests less job security compared to longer-term employment.
+   - **Credit amount (DM 4,870) relative to income and savings:** The loan is not huge, but the applicant’s low savings mean they have limited personal capital to fall back on if issues arise.
+
+3. **Factors discounted or not heavily weighted:**
+   - **Loan purpose (car/new):** Neutral. New car loans are common and not inherently risky.
+   - **Age (53):** Neutral to slightly positive. Older applicants may be more financially stable, but age alone is not a strong predictor without other data.
+   - **Foreign worker (yes):** Not inherently risky; many foreign workers are reliable borrowers. This is likely not a significant factor unless tied to other risks like unstable residency.
+   - **Housing (for free):** Could be neutral or slightly positive (no rent burden), but it also means less tied to the area, though this is not strongly negative.
+   - **Job (skilled employee/official):** Positive but not weighed as heavily as financial discipline indicators.
+
+4. **Positive factors weighed but insufficient to offset negatives:**
+   - **Low installment rate (3% of disposable income):** This is excellent and suggests the loan is affordable.
+   - **No other debtors/guarantors:** Reduces risk.
+   - **Stable employment (skilled employee/official):** Generally reliable job type, but the short tenure (< 4 years) tempers this.
+   - **No existing credits at this bank (2 is not excessive):** Reasonable.
+
+**Overall assessment:**  
+The applicant has a history of financial mismanagement (negative checking account, past payment delays) and very low savings, which are strong predictors of default risk. Despite a manageable debt burden and stable skilled employment, the combination of negative account status and credit history outweighs these positives. In standard German credit scoring models (like those used in the Statlog/German Credit dataset, which this profile closely resembles), these factors alone would typically classify an applicant as ""Bad.""
+
+**Knowledge beyond stated profile:**  
+This profile resembles the German Credit Data dataset, where checking account status and credit history are known to be the top predictors in the model. The classification ""Bad"" aligns with the typical high-risk pattern in that dataset: negative balance, past delays, low savings, and medium-term employment.","{""checking_account_status"": ""HIGH"", ""duration_months"": ""NOT_MENTIONED"", ""credit_history"": ""HIGH"", ""purpose"": ""DISCOUNTED"", ""credit_amount"": ""MEDIUM"", ""savings_account_bonds"": ""HIGH"", ""employment_since"": ""MEDIUM"", ""installment_rate_pct"": ""MEDIUM"", ""personal_status_sex"": ""NOT_MENTIONED"", ""other_debtors_guarantors"": ""MEDIUM"", ""present_residence_since"": ""NOT_MENTIONED"", ""property"": ""NOT_MENTIONED"", ""age_years"": ""DISCOUNTED"", ""other_installment_plans"": ""NOT_MENTIONED"", ""housing"": ""DISCOUNTED"", ""num_existing_credits"": ""MEDIUM"", ""job"": ""MEDIUM"", ""num_dependents"": ""NOT_MENTIONED"", ""telephone"": ""NOT_MENTIONED"", ""foreign_worker"": ""DISCOUNTED""}",""

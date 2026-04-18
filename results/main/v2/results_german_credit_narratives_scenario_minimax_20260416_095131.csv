@@ -1,0 +1,2 @@
+"case_id","model","condition","credit_risk","classification","correct","eval_input_tokens","eval_output_tokens","scoring_input_tokens","scoring_output_tokens","timestamp","response_text","cue_weights_json","error"
+"1","minimax/minimax-m2.5","scenario","Good","API_ERROR","UNKNOWN","0","0","0","0","2026-04-16T09:52:30.792388","","{""error"": ""SKIPPED \u2014 eval failed""}","Model returned None content"

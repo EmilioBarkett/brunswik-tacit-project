@@ -143,13 +143,13 @@ def main():
     if args.directive_label and not args.directive:
         parser.error("--directive is required when --directive-label is provided")
 
-    bare_output     = "german_credit_narratives_bare.csv"
-    scenario_output = "german_credit_narratives_scenario.csv"
+    bare_output     = "data/german_credit_narratives_bare.csv"
+    scenario_output = "data/german_credit_narratives_scenario.csv"
 
     output_fields = ["case_id", "narrative", "credit_risk"]
 
     directive_opening = build_directive_opening(args.directive) if args.directive else None
-    directive_output  = f"german_credit_narratives_directive_{args.directive_label}.csv" if args.directive else None
+    directive_output  = f"data/german_credit_narratives_directive_{args.directive_label}.csv" if args.directive else None
 
     outputs_to_open = {
         "bare":     open(bare_output,     "w", newline="", encoding="utf-8"),

@@ -1,0 +1,46 @@
+This is BibTeX, Version 0.99d (TeX Live 2024)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: calm_pluralistic_alignment.aux
+The style file: icml2026.bst
+Database file #1: calm_references.bib
+You've used 10 entries,
+            2773 wiz_defined-function locations,
+            651 strings with 6462 characters,
+and the built_in function-call counts, 4143 in all, are:
+= -- 346
+> -- 243
+< -- 8
++ -- 85
+- -- 75
+* -- 308
+:= -- 665
+add.period$ -- 31
+call.type$ -- 10
+change.case$ -- 52
+chr.to.int$ -- 10
+cite$ -- 20
+duplicate$ -- 201
+empty$ -- 346
+format.name$ -- 87
+if$ -- 852
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 12
+newline$ -- 59
+num.names$ -- 40
+pop$ -- 119
+preamble$ -- 1
+purify$ -- 45
+quote$ -- 0
+skip$ -- 151
+stack$ -- 0
+substring$ -- 92
+swap$ -- 15
+text.length$ -- 1
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 95
+warning$ -- 0
+while$ -- 38
+width$ -- 0
+write$ -- 134

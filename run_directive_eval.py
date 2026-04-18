@@ -36,13 +36,13 @@ def main():
     parser.add_argument("--directive",       required=True,  help="Explicit cue directive text")
     parser.add_argument("--directive-label", required=True,  help="Short label for output filename")
     parser.add_argument("--model",           required=True,  help="OpenRouter model string")
-    parser.add_argument("--input",           default="german_credit_decoded.csv",
-                                             help="Path to decoded CSV (default: german_credit_decoded.csv)")
+    parser.add_argument("--input",           default="data/german_credit_decoded.csv",
+                                             help="Path to decoded CSV (default: data/german_credit_decoded.csv)")
     parser.add_argument("--limit",           type=int, default=None, help="Number of cases to evaluate")
     parser.add_argument("--output",          default=None,   help="Path to results CSV (default: auto-generated)")
     args = parser.parse_args()
 
-    narrative_csv = f"german_credit_narratives_directive_{args.directive_label}.csv"
+    narrative_csv = f"data/german_credit_narratives_directive_{args.directive_label}.csv"
 
     # ── STEP 1: GENERATE DIRECTIVE NARRATIVES ─────────────────────────────────
 

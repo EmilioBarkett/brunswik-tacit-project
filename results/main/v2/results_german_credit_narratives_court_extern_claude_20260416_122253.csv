@@ -1,0 +1,364 @@
+"case_id","model","condition","credit_risk","classification","correct","eval_input_tokens","eval_output_tokens","scoring_input_tokens","scoring_output_tokens","timestamp","response_text","cue_weights_json","error"
+"1","anthropic/claude-haiku-4-5","court_extern","Good","Bad","False","687","1024","1323","252","2026-04-16T12:23:12.342213","# Credit Risk Assessment: BAD RISK
+
+---
+
+## Classification Reasoning
+
+### Strong Indicators (Weighted Heavily)
+
+**1. Checking Account Status: < 0 DM [MAJOR RED FLAG]**
+- This is perhaps the single most concerning factor in this application
+- A negative balance indicates the applicant is currently overdrawn—they cannot maintain a positive cash position
+- This directly signals poor cash flow management and immediate liquidity problems
+- **Risk Weight: CRITICAL**
+
+**2. Installment Rate: 4% of disposable income [POSITIVE]**
+- This is actually quite favorable and represents manageable debt burden
+- However, this must be contextualized against the negative checking account status
+- A low installment rate means little if the applicant cannot cover current obligations
+- **Risk Weight: Mitigating but insufficient to offset other factors**
+
+**3. Credit Amount & Loan Duration [FAVORABLE]**
+- 1,169 DM is a modest amount
+- 6-month duration is very short
+- These factors are genuinely low-risk on their own
+- **Risk Weight: Positive but secondary**
+
+### Moderate Indicators (Contributing Factors)
+
+**4. Credit History: CRITICAL [MAJOR RED FLAG]**
+- ""Critical account"" status is a severe warning sign
+- This indicates past payment difficulties or delinquencies
+- Combined with the negative checking account, this suggests a pattern of financial mismanagement
+- **Risk Weight: VERY HEAVY—This is the second-biggest concern**
+
+**5. Savings / Bonds: Unknown / No Savings Account [CONCERNING]**
+- Absence of savings suggests no financial buffer or discipline
+- In combination with negative checking balance, this indicates zero liquidity reserves
+- If emergency expenses arise, this applicant has no recourse
+- **Risk Weight: HEAVY**
+
+**6. Employment Stability: ≥ 7 years [POSITIVE]**
+- Long tenure suggests job security
+- However, employment stability does not explain the negative account balance or critical credit history
+- This suggests the problem is not income inadequacy but rather spending/management
+- **Risk Weight: Mitigating but does not address behavioral risk**
+
+**7. Property Ownership: Real Estate [POSITIVE]**
+- Homeownership suggests some financial responsibility and asset base
+- However, property ownership does not guarantee loan repayment capacity if current liquidity is negative
+- **Risk Weight: Mitigating factor, but limited given current circumstances**
+
+**8. Loan Purpose: Radio/Television [NEUTRAL-NEGATIVE]**
+- This is a discretionary consumer good, not essential or productivity-enhancing
+- Applicant cannot afford this given negative checking balance
+- This suggests questionable judgment—why borrow for non-essential items when already overdrawn?
+- **Risk Weight: CONCERNING—raises behavioral risk questions**
+
+### Weak Indicators (Limited Predictive Value)
+
+**9. Age: 67 years [CONTEXT-DEPENDENT]**
+- Typically, older applicants show lower risk due to established patterns
+- However, at 67, employment tenure may be limited (applicant may be near/at retirement)
+- If employment ends, income security becomes questionable
+- **Risk Weight: MINIMAL to SLIGHTLY NEGATIVE given age + employment context**
+
+**10. Other Debtors/Guarantors: None [NEGATIVE]**
+- No safety net in the form of a guarantor
+- **Risk Weight: WEAK—but consistent with overall risk profile**
+
+**11. Foreign Worker Status: Yes [WEAK INDICATOR]**
+- Per policy, this has limited predictive value
+- However, combined with age (67), job security may be less certain if visa/work authorization could be affected
+- **Risk Weight: WEAK—but adds minor concern**
+
+---
+
+## Summary of Decision Logic
+
+| Factor | Assessment | Weight |
+|--------|-----------|--------|
+| **Negative Checking Account** | 🔴 Critical Red Flag | HEAVY |
+| **Critical Credit History** | 🔴 Major Concern | HEAVY |
+| **No Savings / No Buffer** | 🔴 Liquidity Crisis | HEAVY |
+| Low Installment Rate | 🟢 Favorable | Mitigating |
+| Employment Stability | 🟢 Favorable | Mitigating |
+| Property Ownership | 🟢 Favorable | Mitigating |
+| Small Loan Amount | 🟢 Favorable | Mitigating |
+| Short","{""checking_account_status"": ""HIGH"", ""duration_months"": ""MEDIUM"", ""credit_history"": ""HIGH"", ""purpose"": ""MEDIUM"", ""credit_amount"": ""MEDIUM"", ""savings_account_bonds"": ""HIGH"", ""employment_since"": ""MEDIUM"", ""installment_rate_pct"": ""MEDIUM"", ""personal_status_sex"": ""NOT_MENTIONED"", ""other_debtors_guarantors"": ""LOW"", ""present_residence_since"": ""NOT_MENTIONED"", ""property"": ""MEDIUM"", ""age_years"": ""LOW"", ""other_installment_plans"": ""NOT_MENTIONED"", ""housing"": ""NOT_MENTIONED"", ""num_existing_credits"": ""NOT_MENTIONED"", ""job"": ""MEDIUM"", ""num_dependents"": ""NOT_MENTIONED"", ""telephone"": ""NOT_MENTIONED"", ""foreign_worker"": ""LOW""}",""
+"2","anthropic/claude-haiku-4-5","court_extern","Bad","Good","False","690","924","1220","246","2026-04-16T12:23:38.879165","# CREDIT RISK ASSESSMENT
+
+## Classification: **GOOD CREDIT RISK**
+
+---
+
+## Reasoning:
+
+### Strong Indicators (Weighted Heavily) — Overall Favorable:
+
+**Installment Rate (2% of disposable income):** This is exceptionally low and represents minimal burden on the applicant's finances. This is the single most positive factor in this assessment. An installment rate of 2% indicates substantial repayment capacity.
+
+**Checking Account Status (0-200 DM):** While not strongly positive, the applicant maintains an active checking account with modest balance, showing basic financial engagement. There is no evidence of overdraft problems.
+
+**Credit Amount (5,951 DM) & Loan Duration (48 months):** While moderate in absolute terms, these figures are manageable given the extremely low installment rate relative to disposable income. The 4-year duration is reasonable for consumer goods financing.
+
+**Loan Purpose (Radio/Television):** Consumer durable goods are moderate-risk loan purposes—lower risk than unsecured personal loans, though not as favorable as vehicle or education loans. This is acceptable for this profile.
+
+### Moderate Indicators — Supportive Factors:
+
+**Credit History:** The applicant has existing credits paid back ""duly till now""—a strong positive indicator demonstrating established repayment discipline.
+
+**Property Ownership (Real Estate):** The applicant owns real estate, which significantly reduces risk by providing both collateral value and indicating financial stability and roots in the community.
+
+**Employment Stability (1-4 years tenure):** While not long-term, this demonstrates current employment stability and income continuity sufficient to service the debt.
+
+**Age & Personal Status:** At 22 years old with property ownership and existing credit history, the applicant demonstrates financial maturity beyond typical peers. Married/separated status with 1 dependent shows family responsibility.
+
+### Weak Indicators — Limiting Concerns:
+
+**Savings/Bonds (< 100 DM):** Low liquid reserves are a concern, but given the 2% installment rate, this is manageable. The real estate ownership partially offsets this weakness.
+
+**Other Dependents/Guarantors:** No co-applicant or guarantor is present, which increases individual risk. However, this is not disqualifying given other factors.
+
+**Existing Credits (1 at bank):** Low number, indicating the applicant is not overleveraged across this institution.
+
+**Foreign Worker Status:** This has minimal predictive value per policy, and the applicant's property ownership and employment suggest integration and stability.
+
+### Factors Discounted:
+
+- **Housing type, telephone registration, residence duration:** Per policy, these have minimal predictive value and do not materially influence the assessment.
+
+---
+
+## Key Considerations Beyond the Data:
+
+1. **Income Inference:** The 2% installment rate is the critical insight—it suggests disposable monthly income of approximately 2,975 DM (5,951 ÷ 48 ÷ 0.02). This income level, combined with property ownership, indicates solid middle-class financial standing.
+
+2. **Age/Experience Paradox:** While 22 is young, the combination of property ownership, existing credit history, employment, and a dependent suggests this applicant may have inherited property or benefited from family financial support—factors that reduce behavioral risk despite youth.
+
+3. **Risk Concentration:** The applicant presents no red flags across multiple dimensions. There are no serious weaknesses (no overdrafts, no payment arrears, stable employment, real estate equity). This diversified positive profile is reassuring.
+
+4. **Loan Size Proportionality:** A 5,951 DM loan for consumer electronics is appropriate for this income level and represents prudent borrowing.
+
+---
+
+## Conclusion:
+
+This applicant presents **low credit risk** primarily due to an exceptional installment rate (2%), coupled with demonstrable repayment history, real estate ownership, stable employment, and no evidence of financial distress. The weak savings position and lack of a guarantor are notable but insufficient to override the strong positive indicators. This is a **recommend approval** profile.","{""checking_account_status"": ""MEDIUM"", ""duration_months"": ""MEDIUM"", ""credit_history"": ""MEDIUM"", ""purpose"": ""MEDIUM"", ""credit_amount"": ""MEDIUM"", ""savings_account_bonds"": ""LOW"", ""employment_since"": ""MEDIUM"", ""installment_rate_pct"": ""HIGH"", ""personal_status_sex"": ""MEDIUM"", ""other_debtors_guarantors"": ""LOW"", ""present_residence_since"": ""DISCOUNTED"", ""property"": ""MEDIUM"", ""age_years"": ""MEDIUM"", ""other_installment_plans"": ""NOT_MENTIONED"", ""housing"": ""DISCOUNTED"", ""num_existing_credits"": ""LOW"", ""job"": ""NOT_MENTIONED"", ""num_dependents"": ""MEDIUM"", ""telephone"": ""DISCOUNTED"", ""foreign_worker"": ""LOW""}",""
+"3","anthropic/claude-haiku-4-5","court_extern","Good","Bad","False","682","1010","1306","238","2026-04-16T12:24:28.154680","# Credit Risk Assessment: BAD RISK
+
+---
+
+## Classification Rationale
+
+This applicant presents **significant credit risk concerns** that outweigh mitigating factors. While certain elements are positive, the combination of critical weaknesses in strong indicator categories creates an unacceptable risk profile.
+
+---
+
+## Heavy-Weight Factor Analysis (Strong Indicators)
+
+### Critical Negatives:
+
+**1. No Checking Account (Critical)**
+- This is a major red flag. The absence of a checking account suggests either financial exclusion or deliberate avoidance of banking relationships
+- Makes ongoing payment monitoring and account management impossible
+- Combined with critical credit history, this suggests significant financial management issues
+
+**2. Critical Credit History (Critical)**
+- ""Critical account / other credits existing"" is disqualifying language in most credit frameworks
+- This indicates past payment defaults or severely delinquent accounts
+- At age 49 with 4-7 years employment stability, a critical history suggests chronic repayment problems, not temporary circumstances
+- The applicant has already demonstrated inability to manage credit obligations
+
+**3. Minimal Savings (< 100 DM) (Strong Concern)**
+- At age 49, virtually no financial buffer indicates poor financial discipline and capacity
+- Suggests living paycheck-to-paycheck with no emergency reserves
+- Combined with 2 dependents, this is precarious
+
+### Moderate Positives:
+
+**Installment Rate (2% of disposable income)** - This is genuinely favorable and suggests the loan amount is manageable relative to income. However, this cannot overcome the other critical deficiencies.
+
+**Loan Duration (12 months)** - Short duration reduces exposure, but doesn't address repayment capacity concerns.
+
+**Loan Purpose (Education)** - Education loans are statistically lower-risk, but this applicant's history suggests educational investment may not improve employment prospects or repayment capacity.
+
+**Loan Amount (2,096 DM)** - Modest amount, further mitigated by favorable installment rate.
+
+---
+
+## Moderate-Weight Factor Analysis
+
+**Property Ownership + Own Housing** - Positive equity position, but this is contradicted by:
+- No checking account (suggests financial distancing from institutions)
+- Minimal savings (wealth is illiquid or leveraged)
+- Critical credit history (prior defaults despite property ownership)
+
+**Employment Stability (4-7 years)** - Acceptable tenure, but combined with unskilled status and 2 dependents, employment may not be secure or income sufficient.
+
+**Age (49 years)** - While age typically reduces risk, at 49 with minimal savings and critical credit history, this suggests entrenched financial problems rather than youthful mistakes.
+
+---
+
+## Weak Indicators (Appropriately Discounted)
+
+Foreign worker status, existing credits at bank (1), telephone status, residence duration, and dependents number—all appropriately weighted as secondary.
+
+---
+
+## Beyond-the-Data Considerations
+
+1. **Pattern Recognition**: The combination of no checking account + critical credit history + minimal savings suggests this is not a first-time financial distress situation but a chronic pattern. At 49, behavior is unlikely to change.
+
+2. **Loan Purpose Credibility**: While education is statistically positive, the profile raises questions:
+   - Why is a 49-year-old unskilled worker pursuing education now?
+   - Given critical payment history, will education improve employability sufficiently to justify the risk?
+   - Is this an attempt to restructure finances through education, suggesting prior financial failure?
+
+3. **Guarantor Absence**: No guarantor or co-applicant at age 49 may indicate:
+   - Isolation or poor relationships
+   - No family confidence in repayment capacity
+   - Inability to find anyone willing to co-sign
+
+4. **Checking Account Significance**: In 1990s Germany (when this model was likely developed), a checking account was basic banking infrastructure. Its absence at age 49 is unusual and suggests either institutional distrust or exclusion due to prior defaults.
+
+---
+
+## Conclusion
+
+**This applicant should be declined.** The critical credit history is disqualifying on its own. Compounded by the absence of a checking account and minimal financial reserves, this applicant has demonstrated inability and/or unwillingness to meet financial obligations. The modest loan amount and favorable installment rate do not compensate for fundamental repayment risk. 
+
+The bank's capital and loss provisioning would be better deployed elsewhere.
+
+**Recommendation: DECLINE**","{""checking_account_status"": ""HIGH"", ""duration_months"": ""MEDIUM"", ""credit_history"": ""HIGH"", ""purpose"": ""MEDIUM"", ""credit_amount"": ""MEDIUM"", ""savings_account_bonds"": ""HIGH"", ""employment_since"": ""MEDIUM"", ""installment_rate_pct"": ""MEDIUM"", ""personal_status_sex"": ""NOT_MENTIONED"", ""other_debtors_guarantors"": ""MEDIUM"", ""present_residence_since"": ""LOW"", ""property"": ""MEDIUM"", ""age_years"": ""MEDIUM"", ""other_installment_plans"": ""LOW"", ""housing"": ""MEDIUM"", ""num_existing_credits"": ""LOW"", ""job"": ""MEDIUM"", ""num_dependents"": ""MEDIUM"", ""telephone"": ""LOW"", ""foreign_worker"": ""LOW""}",""
+"4","anthropic/claude-haiku-4-5","court_extern","Good","Bad","False","689","796","1092","252","2026-04-16T12:24:42.030523","# Credit Risk Assessment: BAD RISK
+
+---
+
+## Reasoning
+
+### Critical Risk Factors (Heavily Weighted)
+
+**1. Checking Account Status: < 0 DM (MAJOR RED FLAG)**
+This is the most concerning indicator. A negative balance signals:
+- Current cash flow problems
+- Inability to manage basic finances
+- High probability of payment difficulties on new obligations
+- This alone is a significant warning sign that overrides several positive factors
+
+**2. Installment Rate: 2% of Disposable Income (POSITIVE, but context matters)**
+While 2% appears low in isolation, when combined with a negative checking account, this suggests the applicant is already struggling with liquidity despite a seemingly manageable installment burden. The real concern is *where* the money is coming from to make payments.
+
+**3. Credit Amount: 7,882 DM (MODERATE CONCERN)**
+For an applicant with negative checking balance and minimal savings, this is a substantial sum that increases exposure.
+
+**4. Loan Duration: 42 Months (MODERATE CONCERN)**
+At 3.5 years, this is a medium-term commitment from someone showing current financial stress.
+
+### Moderately Positive Factors (Cannot Overcome Primary Concerns)
+
+- **Credit History**: Good track record on existing credits (positive)
+- **Employment Stability**: 4-7 years tenure provides some security (positive)
+- **Age**: 45 years suggests maturity (positive)
+- **Guarantor Present**: Reduces direct bank exposure (positive)
+- **Property Holdings**: Building society savings agreement / life insurance shows some asset base (positive, though minimal)
+- **Housing**: Living rent-free improves financial position (positive)
+
+### Why These Don't Offset the Risk
+
+Despite these favorable elements, they are fundamentally undermined by the applicant's **current liquidity crisis** (negative checking account). A guarantor helps, but the applicant themselves is demonstrably struggling financially right now.
+
+### Discounted Weak Indicators
+
+- Foreign worker status: Limited predictive value per policy; not decisive
+- Number of dependents (2): Slightly increases risk but not determinative
+- Existing credits at bank (1): Limited relevance; doesn't negate current cash flow problems
+
+---
+
+## Additional Considerations Beyond the Profile
+
+1. **Loan Purpose - Furniture/Equipment**: This is a consumption loan with no productive return. Unlike education or vehicle loans that may enhance earning capacity, furniture purchases don't improve the applicant's ability to repay during financial stress.
+
+2. **Negative Checking + Minimal Savings**: The combination of < 0 DM checking and < 100 DM in savings suggests the applicant has zero financial cushion. Any income disruption or emergency would immediately trigger default.
+
+3. **Guarantor Quality Unknown**: While a guarantor is mentioned, the assessment depends heavily on their creditworthiness and willingness to pay, which isn't provided here. This cannot be assumed as mitigation.
+
+4. **Foreign Worker Context**: While not heavily weighted per policy, combined with financial stress and lack of established savings, there may be additional employment volatility or integration challenges (though this requires careful assessment to avoid bias).
+
+---
+
+## Recommendation
+
+**DECLINE** this application. The applicant's negative checking account balance is a disqualifying indicator of current financial distress. Approval would represent excessive credit risk given the applicant's demonstrated inability to maintain positive cash flow. Recommend follow-up in 12+ months if the applicant can demonstrate sustained positive checking balance and accumulation of modest savings.","{""checking_account_status"": ""HIGH"", ""duration_months"": ""MEDIUM"", ""credit_history"": ""MEDIUM"", ""purpose"": ""MEDIUM"", ""credit_amount"": ""MEDIUM"", ""savings_account_bonds"": ""MEDIUM"", ""employment_since"": ""MEDIUM"", ""installment_rate_pct"": ""MEDIUM"", ""personal_status_sex"": ""NOT_MENTIONED"", ""other_debtors_guarantors"": ""MEDIUM"", ""present_residence_since"": ""NOT_MENTIONED"", ""property"": ""MEDIUM"", ""age_years"": ""MEDIUM"", ""other_installment_plans"": ""NOT_MENTIONED"", ""housing"": ""MEDIUM"", ""num_existing_credits"": ""LOW"", ""job"": ""NOT_MENTIONED"", ""num_dependents"": ""LOW"", ""telephone"": ""NOT_MENTIONED"", ""foreign_worker"": ""DISCOUNTED""}",""
+"5","anthropic/claude-haiku-4-5","court_extern","Bad","Bad","True","685","774","1070","245","2026-04-16T12:24:54.373105","# CREDIT RISK ASSESSMENT
+
+## Classification: **BAD CREDIT RISK**
+
+---
+
+## REASONING
+
+### Critical Risk Factors (Heavily Weighted):
+
+**1. Checking Account Status: < 0 DM (NEGATIVE BALANCE)**
+- This is a strong indicator of immediate liquidity problems and poor financial management
+- A negative balance suggests the applicant is already unable to maintain basic account discipline
+- This is a primary red flag that outweighs several positive factors
+
+**2. Credit History: Delay in Paying Off in the Past**
+- Past delinquencies are highly predictive of future default
+- Combined with the current negative checking account status, this suggests a pattern of payment difficulties
+- This substantially increases the probability of non-performance on this new loan
+
+**3. Installment Rate: 3% of Disposable Income (Moderate Concern)**
+- While 3% is not extreme, it should be evaluated within context
+- Given the applicant's demonstrated payment difficulties and negative cash position, even modest installment burdens become problematic
+- The applicant has already shown inability to manage current obligations
+
+**4. Savings / Bonds: < 100 DM (Very Low Buffer)**
+- Minimal financial reserves mean no cushion for income disruption
+- This leaves the applicant vulnerable to any unexpected expense or employment interruption
+- At age 53, inadequate savings is particularly concerning for long-term stability
+
+### Concerning Contextual Factors:
+
+**5. Foreign Worker Status + Employment Stability (1 to < 4 years)**
+- As a foreign worker with less than 4 years tenure, employment security is questionable
+- Foreign workers may face visa restrictions, work permit dependencies, or sectoral instability
+- Relatively recent employment tenure provides limited track record of stability
+
+**6. No Co-Obligor or Guarantor**
+- Applicant bears sole responsibility; no secondary recovery source
+- Particularly risky given the demonstrated payment problems
+
+**7. Property Ownership: Unknown/No Property**
+- No collateral available; this is an unsecured personal loan
+- Limits recovery options in default scenario
+
+### Mitigating Factors (Limited Weight Given Risk Profile):
+
+**Positive factors present:**
+- Loan purpose is a new car (relatively lower risk purpose)
+- Age 53 (moderate positive factor, but overridden by payment history)
+- Modest loan amount (4,870 DM) and duration (24 months)
+- Housing stability (free housing reduces expense burden)
+- Currently no other active installment plans
+- Skilled employment level
+
+**However:** These positive factors are insufficient to offset the fundamental credibility and cash flow concerns.
+
+---
+
+## Professional Conclusion:
+
+The applicant presents a **clear and present danger of default**. The combination of:
+- Active financial distress (negative checking account)
+- Demonstrated inability to meet past obligations
+- Minimal financial reserves
+- Precarious employment circumstances (foreign worker, recent tenure)
+
+...creates an unacceptable credit risk profile. The applicant is currently **unable to manage existing financial obligations**, making them an unsuitable candidate for an additional 4,870 DM liability over 24 months.
+
+**Recommendation: DECLINE** the application unless the applicant can provide either (1) a qualified guarantor, (2) evidence of substantial cash reserves, or (3) proof of significantly improved financial circumstances and checking account status over a 3-6 month observation period.","{""checking_account_status"": ""HIGH"", ""duration_months"": ""MEDIUM"", ""credit_history"": ""HIGH"", ""purpose"": ""MEDIUM"", ""credit_amount"": ""MEDIUM"", ""savings_account_bonds"": ""HIGH"", ""employment_since"": ""MEDIUM"", ""installment_rate_pct"": ""MEDIUM"", ""personal_status_sex"": ""NOT_MENTIONED"", ""other_debtors_guarantors"": ""MEDIUM"", ""present_residence_since"": ""LOW"", ""property"": ""MEDIUM"", ""age_years"": ""LOW"", ""other_installment_plans"": ""LOW"", ""housing"": ""LOW"", ""num_existing_credits"": ""NOT_MENTIONED"", ""job"": ""MEDIUM"", ""num_dependents"": ""NOT_MENTIONED"", ""telephone"": ""NOT_MENTIONED"", ""foreign_worker"": ""MEDIUM""}",""

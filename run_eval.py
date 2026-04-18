@@ -194,7 +194,9 @@ def main():
         input_stem  = os.path.splitext(os.path.basename(args.input))[0]
         model_short = args.model.replace("/", "-").split("-")[1]
         timestamp   = datetime.now().strftime("%Y%m%d_%H%M%S")
-        args.output = f"results_{input_stem}_{model_short}_{timestamp}.csv"
+        run_dir     = os.path.join("results", "main", "v2")
+        os.makedirs(run_dir, exist_ok=True)
+        args.output = os.path.join(run_dir, f"results_{input_stem}_{model_short}_{timestamp}.csv")
 
     scoring_model = SCORING_MODEL
 
@@ -206,7 +208,15 @@ def main():
         print(f"Resuming — {len(completed_ids)} cases already completed.")
 
     client    = get_client()
-    condition = "scenario" if "scenario" in args.input.lower() else "bare"
+    input_lower = args.input.lower()
+    if "court_extern" in input_lower:
+        condition = "court_extern"
+    elif "scenario" in input_lower:
+        condition = "scenario"
+    elif "directive" in input_lower:
+        condition = "directive"
+    else:
+        condition = "bare"
 
     print(f"Eval model:     {args.model}")
     print(f"Scoring model:  {scoring_model}")
@@ -235,6 +245,7 @@ def main():
 
         cases_run   = 0
         cases_limit = args.limit
+        run_start   = time.time()
 
         for row in reader:
             case_id = int(row["case_id"])
@@ -244,6 +255,7 @@ def main():
             if cases_limit is not None and cases_run >= cases_limit:
                 break
 
+            total_to_run = cases_limit if cases_limit is not None else 1000
             print(f"  Case {case_id} / {'all' if cases_limit is None else cases_limit}...", end=" ", flush=True)
 
             # ── CALL 1: EVAL ──────────────────────────────────────────────────
@@ -295,9 +307,18 @@ def main():
             })
             outfile.flush()
 
-            print(f"→ {classification} (truth: {row['credit_risk']}) {'✓' if correct is True else '✗' if correct is False else '?'}")
-
             cases_run += 1
+
+            elapsed      = time.time() - run_start
+            avg_per_case = elapsed / cases_run
+            remaining    = total_to_run - cases_run
+            eta_secs     = int(avg_per_case * remaining)
+            eta_str      = f"{eta_secs // 60}m {eta_secs % 60}s"
+
+            print(f"→ {classification} (truth: {row['credit_risk']}) "
+                  f"{'✓' if correct is True else '✗' if correct is False else '?'}"
+                  f"  |  {cases_run}/{total_to_run}  ETA {eta_str}")
+
             time.sleep(CALL_DELAY)
 
     print(f"\nDone. {cases_run} cases written to: {args.output}")

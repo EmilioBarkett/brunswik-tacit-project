@@ -1,0 +1,441 @@
+%%%%%%%% ICML 2026 PLURALISTIC ALIGNMENT WORKSHOP SUBMISSION %%%%%%%%%%%%%%%%%
+
+\documentclass{article}
+
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage[textsize=tiny]{todonotes}
+
+\newcommand{\theHalgorithm}{\arabic{algorithm}}
+
+\usepackage{icml2026}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{amsthm}
+
+\usepackage[capitalize,noabbrev]{cleveref}
+
+\icmltitlerunning{Whose Alignment? Process Alignment Across Organizational Contexts}
+
+\begin{document}
+
+\twocolumn[
+  \icmltitle{Whose Alignment? Measuring LLM Process Alignment\\
+    Across Diverse Organizational Decision Contexts}
+
+  \begin{icmlauthorlist}
+    \icmlauthor{Anonymous Author 1}{anon}
+    \icmlauthor{Anonymous Author 2}{anon}
+  \end{icmlauthorlist}
+
+  \icmlaffiliation{anon}{Anonymous Institution}
+
+  \icmlkeywords{pluralistic alignment, LLM alignment, decision-making,
+    Brunswik lens model, cue utilization, organizational alignment}
+
+  \vskip 0.3in
+]
+
+\printAffiliationsAndNotice{}
+
+% ── ABSTRACT ──────────────────────────────────────────────────────────────────
+
+\begin{abstract}
+  Aligning AI systems with organizational decision-making is typically framed
+  as a single-target problem: make the model behave like \emph{the}
+  organization. We argue this framing obscures a deeper pluralistic challenge.
+  Different organizations encode different, often contested, value-laden
+  decision policies, and models vary substantially in which organizations they
+  naturally align with. We introduce the Contextualized Alignment Lens Model
+  (CALM), which measures \emph{process alignment} — whether an LLM weights
+  information as the organization does, not merely whether it reaches the same
+  conclusions. Applying CALM across two institutional domains — European Court
+  of Human Rights (ECHR) Article 6 decisions and German consumer credit
+  decisions — we show that output accuracy systematically overstates process
+  alignment, that models differ dramatically in baseline alignment across both
+  domains, and that explicit externalization of organizational policy partially
+  but incompletely closes the gap. Crucially, the credit domain introduces a
+  tension absent from the legal domain: the normative model encodes
+  historically discriminatory patterns, making high process alignment an
+  ethically ambiguous target. CALM thus operationalizes the faithfulness
+  criterion that steerable pluralism requires but does not itself provide a
+  method to assess.
+\end{abstract}
+
+% ── 1. INTRODUCTION ───────────────────────────────────────────────────────────
+
+\section{Introduction}
+
+Pluralistic alignment asks how AI systems can faithfully serve stakeholders
+with diverse, conflicting values rather than converging on a single dominant
+worldview \citep{sorensen2024roadmap}. Most work in this space focuses on
+\emph{between-person} plurality: aggregating individual preferences, handling
+annotation disagreements, or enabling models to adopt different user
+perspectives. We argue that \emph{between-organization} plurality deserves
+equal attention.
+
+Organizations are not neutral information processors. They are repositories
+of knowledge accumulated through experience, culture, and institutional
+history \citep{nonaka1994dynamic}. Some of this knowledge is explicit: rules,
+policies, codified procedures. Much is tacit: embedded in practice and
+professional judgment, resistant to full articulation \citep{polanyi1966tacit}.
+When organizations deploy LLMs to replicate their decisions, they implicitly
+assume they can transfer this knowledge to a model. The tacit dimension
+resists this transfer.
+
+This creates a problem distinct from output accuracy. An LLM can reach the
+right decision for the wrong reasons — weighting information differently than
+the organization does while still achieving adequate accuracy on the observed
+distribution. We call this divergence the \emph{knowledge gap}: a mismatch
+between organizational and LLM cue-utilization policies that output agreement
+fails to detect. The knowledge gap matters for process legitimacy
+\citep{tyler1988psychology}, generalization to novel cases, and the
+trustworthiness of AI-assisted decisions in regulated domains.
+
+We present the Contextualized Alignment Lens Model (CALM), which operationalizes
+and measures this gap. CALM applies the Brunswikian lens model
+\citep{brunswik1952conceptual,hammond1964psychology} to estimate the
+cue-weighting policy of both organizations and LLMs from observed decisions,
+then computes cosine similarity between these policy vectors as the primary
+alignment metric. We test CALM in two domains:
+
+\textbf{Study 1 (ECHR):} We analyze 1,000 ECHR Article 6 decisions across
+six LLM models under three prompting conditions. We find sharp variation in
+baseline process alignment — from strong agreement to active misalignment —
+and show that explicit knowledge externalization substantially improves
+alignment for poorly-aligned models while producing ceiling effects for
+already well-aligned ones.
+
+\textbf{Study 2 (German Credit):} We replicate CALM in consumer credit
+decision-making using the German Credit Dataset \citep{hofmann1994statlog},
+a standardized benchmark of 1,000 credit decisions by a German bank.
+This domain introduces a tension absent from the legal context: the
+organizational normative model is derived from historical human decisions
+that may encode discrimination against protected groups. High process
+alignment with the organizational benchmark is therefore not unconditionally
+desirable — it may mean replicating historical bias. This is a
+distinctively pluralistic challenge: whose values should the model align to?
+
+Together, these studies demonstrate that organizational alignment is itself
+a pluralistic alignment problem, and that CALM provides a scalable method
+for measuring and evaluating it.
+
+% ── 2. BACKGROUND ─────────────────────────────────────────────────────────────
+
+\section{Background}
+
+\subsection{The Brunswik Lens Model}
+
+The lens model \citep{brunswik1952conceptual,hammond1964psychology} represents
+judgment as a linear combination of observable cues: $J = \beta_0 +
+\sum_i \beta_i C_i$, where $C_i$ are cues and $\beta_i$ are learned weights.
+Applied to human decision-makers, it separates ecological validity (do cues
+genuinely predict outcomes?) from achievement (do the decision-maker's weights
+match ecological realities?). Applied to organizations and LLMs, it reveals
+whether they weight the same cues in the same direction and magnitude — that
+is, whether their \emph{observed behavioral policies} are aligned.
+
+We estimate behavioral policies using ridge-regularized logistic regression
+on observed decisions, fitting identical cue sets to both the organizational
+benchmark and each LLM. The resulting coefficient vectors $\boldsymbol{\beta}$
+represent each decision-maker's inferred cue-utilization policy. Alignment is
+measured as:
+\begin{equation}
+  \text{cos}(\theta) = \frac{\boldsymbol{\beta}_{\text{org}} \cdot
+    \boldsymbol{\beta}_{\text{LLM}}}{\|\boldsymbol{\beta}_{\text{org}}\|
+    \|\boldsymbol{\beta}_{\text{LLM}}\|}
+\end{equation}
+
+This metric is scale-invariant, symmetric, and bounded in $[-1, 1]$, where
+1.0 indicates perfect alignment, 0 orthogonality, and negative values
+opposition.
+
+\subsection{Pluralistic Alignment}
+
+\citet{sorensen2024roadmap} distinguish three modes of pluralistic alignment:
+Overton pluralism (presenting a range of reasonable responses), distributional
+pluralism (reflecting population-level value distributions), and steerable
+pluralism (faithfully adopting a specified perspective when directed).
+CALM's court-externalization condition is an instance of steerable pluralism
+at the organizational level. Crucially, steerable pluralism requires that
+steering be \emph{faithful} — the model must genuinely adopt the target
+policy, not merely mimic its surface outputs. CALM operationalizes this
+faithfulness criterion by measuring whether the model's cue-weighting policy
+shifts toward the target organization's policy under externalization.
+
+Prior work has shown that LLMs can solve judgment tasks at human-level
+accuracy while weighting information differently \citep{binz2023using}, and
+that output accuracy alone is insufficient for evaluating AI alignment in
+organizational settings \citep{wieringa2021means}. CALM builds on this
+motivation, providing a concrete measurement approach grounded in
+decision-making theory.
+
+% ── 3. THE CALM FRAMEWORK ─────────────────────────────────────────────────────
+
+\section{The CALM Framework}
+
+CALM measures process alignment between an organizational benchmark and LLM
+decision-making across three conditions:
+
+\textbf{Baseline:} The model receives a structured case profile and decides
+without additional guidance. This reveals the model's \emph{implicit}
+cue-utilization policy — what it has learned through pretraining.
+
+\textbf{Court-/Org-externalized:} The model receives the organization's
+cue-weighting policy, derived from ridge logistic regression on the
+organization's historical decisions, as explicit guidance before the case.
+High-weighted cues are described as strong indicators; medium-weighted cues
+as moderate; low-weighted cues as weak. This tests whether making the tacit
+explicit closes the knowledge gap.
+
+\textbf{Introspective-externalized:} The model is shown how its baseline
+cue-weighting policy diverges from the organization's (aggregate patterns
+across all cases) and instructed to self-correct. This tests whether
+self-directed adjustment can supplement or replace explicit guidance.
+
+For each condition, we fit ridge logistic regression on the model's decisions
+to obtain $\boldsymbol{\beta}_{\text{LLM}}$, compute cosine similarity with
+$\boldsymbol{\beta}_{\text{org}}$, and test significance via bootstrap
+permutation (1,000 shuffles). Secondary metrics include Pearson correlation
+of coefficient vectors, propensity correlation (per-case $P(\text{positive})$
+correlation), output accuracy, Cohen's $\kappa$, and ROC AUC.
+
+% ── 4. STUDY 1: ECHR ──────────────────────────────────────────────────────────
+
+\section{Study 1: ECHR Article 6 Decisions}
+
+\subsection{Context and Data}
+
+We analyze 1,000 ECHR Article 6 decisions (50\% violation / 50\% no
+violation). Cues were coded as 45 binary features organized into nine
+families (Delay, Counsel, EvidenceAndArms, TribunalIntegrity, etc.) using
+GPT-5.4-mini with a codebook derived from Article 6 jurisprudence. We tested
+six models: GPT-5.4-mini, GPT-5.4-nano, Grok 4.1 Fast, Claude Haiku 4.5,
+DeepSeek-v3.2, and Minimax M2.7 — spanning US- and China-based providers.
+
+The court's ridge logistic regression achieves ROC AUC = 0.714, confirming
+that binary cues capture meaningful but partial variance in judicial reasoning.
+The most heavily weighted cue families are EvidenceAndArms and Delay,
+consistent with prior computational studies of ECHR outcomes
+\citep{aletras2016predicting}.
+
+\subsection{Baseline Process Alignment}
+
+Under baseline conditions, LLM process alignment varies dramatically — far
+more than output accuracy suggests. GPT-5.4-mini ($r_{\cos} = 0.863$,
+$p < .001$) and Grok 4.1 Fast ($r_{\cos} = 0.868$, $p < .001$) show
+strong alignment. Minimax M2.7 shows moderate alignment ($r_{\cos} = 0.582$,
+$p < .001$). Claude Haiku 4.5 ($r_{\cos} = -0.082$, $p = .408$), DeepSeek-v3.2
+($r_{\cos} = 0.051$, $p = .322$), and GPT-5.4-nano ($r_{\cos} = -0.236$,
+$p = .060$) show minimal or negative alignment.
+
+This variation reveals implicit value plurality: models trained on similar
+data encode systematically different cue-weighting policies. Claude Haiku
+exemplifies the output-process paradox: it achieves 73.4\% output accuracy
+and ROC AUC = 0.804 (higher than GPT-5.4-mini's 0.791) while its policy
+vector is orthogonal to the court's. It reaches adequate outcomes via an
+entirely different reasoning path.
+
+\subsection{Effect of Externalization}
+
+Court-externalization produces large alignment gains for initially misaligned
+models: GPT-5.4-nano ($\Delta = +0.951$, $p = .005$), Claude Haiku
+($\Delta = +0.719$, $p = .005$), DeepSeek-v3.2 ($\Delta = +0.495$,
+$p = .005$). Ceiling effects appear for models already well-aligned:
+GPT-5.4-mini ($\Delta = +0.046$, $p = .109$, n.s.) and Grok 4.1 Fast
+($\Delta = -0.013$, $p = .55$). Introspective externalization yields
+comparable gains for Claude Haiku ($\Delta = +0.793$) but destabilizes
+Grok 4.1 Fast ($\Delta = -0.395$, $p = .995$), whose well-calibrated
+implicit policy is disrupted by self-correction feedback.
+
+% ── 5. STUDY 2: GERMAN CREDIT ─────────────────────────────────────────────────
+
+\section{Study 2: German Credit Decisions}
+
+\subsection{Context and the Fairness Tension}
+
+The German Credit Dataset \citep{hofmann1994statlog} contains 1,000 consumer
+credit decisions by a German bank, with a 70\% Good / 30\% Bad base rate and
+20 cues including numerical (loan duration, credit amount, age) and
+categorical (credit history, employment status, housing) attributes.
+
+This domain introduces a tension absent from the ECHR study. Several cues
+in the dataset are protected attributes under contemporary anti-discrimination
+law: \texttt{personal\_status\_sex}, \texttt{age\_years}, and
+\texttt{foreign\_worker}. The organizational normative model is derived from
+\emph{historical human decisions} that may encode discriminatory patterns —
+historical credit officers may have weighted these attributes in ways that
+disadvantaged women, older applicants, or foreign workers. In this domain,
+high process alignment with the organizational benchmark is not
+unconditionally desirable. A model that achieves $r_{\cos} \approx 1.0$ with
+the historical normative model may be faithfully reproducing institutional
+discrimination.
+
+This is a core pluralistic alignment question: whose values should the model
+align to? The organization's historically documented decision policy? The
+organization's stated ethical commitments? Contemporary regulatory standards?
+These targets conflict, and CALM surfaces this conflict precisely because it
+measures the \emph{actual} weighting policy rather than stated intent.
+
+\subsection{Setup}
+
+We apply the same six LLM models under three conditions (baseline,
+org-externalized, introspective-externalized) to 1,000 cases. The
+org-externalized condition injects the normative cue weights — derived from
+ridge logistic regression on the German Credit Dataset — as bank policy
+before each case, structured by tier: strong indicators (checking account
+status, installment rate, credit amount, loan duration), moderate
+(credit history, savings, employment, purpose), and weak (remaining cues),
+with direction included for each.
+
+We measure the same suite of metrics as Study 1, and additionally analyze
+the weight placed on protected attributes (\texttt{personal\_status\_sex},
+\texttt{age\_years}, \texttt{foreign\_worker}) across conditions and models.
+
+\subsection{Results}
+
+\todo[inline]{Results pending completion of model runs. Placeholder structure
+below based on expected findings.}
+
+\begin{table}[t]
+  \caption{Baseline process alignment in the German Credit domain (cosine
+    similarity between organizational and LLM policy vectors, $n=1000$).}
+  \label{tab:german-baseline}
+  \begin{center}
+    \begin{small}
+      \begin{tabular}{lcc}
+        \toprule
+        Model & $r_{\cos}$ & $p$ \\
+        \midrule
+        GPT-5.4-mini      & [TBD] & [TBD] \\
+        GPT-5.4-nano      & [TBD] & [TBD] \\
+        Grok 4.1 Fast     & [TBD] & [TBD] \\
+        Claude Haiku 4.5  & [TBD] & [TBD] \\
+        DeepSeek-v3.2     & [TBD] & [TBD] \\
+        Minimax M2.7      & [TBD] & [TBD] \\
+        \bottomrule
+      \end{tabular}
+    \end{small}
+  \end{center}
+\end{table}
+
+\begin{table}[t]
+  \caption{Change in process alignment under org-externalization ($\Delta
+    r_{\cos}$, German Credit domain).}
+  \label{tab:german-extern}
+  \begin{center}
+    \begin{small}
+      \begin{tabular}{lcc}
+        \toprule
+        Model & $\Delta r_{\cos}$ & $p$ \\
+        \midrule
+        GPT-5.4-mini      & [TBD] & [TBD] \\
+        GPT-5.4-nano      & [TBD] & [TBD] \\
+        Grok 4.1 Fast     & [TBD] & [TBD] \\
+        Claude Haiku 4.5  & [TBD] & [TBD] \\
+        DeepSeek-v3.2     & [TBD] & [TBD] \\
+        Minimax M2.7      & [TBD] & [TBD] \\
+        \bottomrule
+      \end{tabular}
+    \end{small}
+  \end{center}
+\end{table}
+
+% ── 6. CROSS-DOMAIN DISCUSSION ────────────────────────────────────────────────
+
+\section{Discussion}
+
+\subsection{Process Alignment as Pluralistic Alignment}
+
+Our two studies frame organizational alignment as a pluralistic alignment
+challenge. Different organizations encode different, historically contingent
+value systems. Models differ in which organizations they naturally align with,
+reflecting implicit value plurality baked into pretraining. The ECHR study
+shows that GPT-5.4-mini and Grok 4.1 Fast implicitly approximate the court's
+cue-weighting policy — likely due to exposure to legal text during training —
+while Claude Haiku and GPT-5.4-nano do not. This is not a quality difference;
+it is a value difference. These models have learned to reason about similar
+evidence in different ways.
+
+The German Credit study sharpens this by introducing incommensurable alignment
+targets. If a model weights \texttt{personal\_status\_sex} heavily in alignment
+with the historical organizational benchmark, it is process-aligned with the
+historical institution but value-misaligned with contemporary fairness norms.
+CALM makes this tension visible. A purely output-based evaluation — does the
+model approve or reject credit at the right rate? — cannot distinguish a model
+that reasons fairly from one that reproduces historical bias.
+
+\subsection{Steerable Pluralism Requires Process-Level Measurement}
+
+\citet{sorensen2024roadmap} argue that steerable pluralism is the most
+practically important mode of pluralistic alignment: systems should be
+steerable toward the perspective of a specified stakeholder when directed.
+Our externalization results demonstrate that this steerability is partial.
+Externalization substantially improves alignment for models starting from
+low baselines, but does not achieve $r_{\cos} = 1.0$ even with explicit
+policy guidance. Residual divergence persists — likely reflecting the
+incommensurable aspects of tacit organizational knowledge \citep{polanyi1966tacit}
+that cannot be fully captured in a prompt.
+
+For steerable pluralism to be faithful, it must be measured at the process
+level. Output-level steerability is easier to achieve — a model can shift
+its approval rate to match an organization's — but is insufficient if the
+model is weighting inputs differently. CALM provides the measurement method
+that faithfulness evaluation requires.
+
+\subsection{Implications for Model Selection}
+
+Our results suggest a two-stage model selection strategy for organizational
+deployment. First, measure baseline process alignment using CALM to identify
+models that implicitly encode domain-relevant decision policies. For these
+models, externalization is redundant and may destabilize well-calibrated
+policies (as observed for Grok 4.1 Fast). Second, for models with low baseline
+alignment, invest in explicit policy externalization. Context engineering is
+most valuable precisely where implicit alignment is lowest.
+
+In the German Credit domain, this strategy must be qualified by the fairness
+tension. An organization should not simply select the model with highest
+cosine similarity to the historical normative model if that model is
+reproducing discriminatory patterns. CALM should be applied to the
+\emph{intended} decision policy — not merely the historically observed one.
+
+% ── 7. CONCLUSION ─────────────────────────────────────────────────────────────
+
+\section{Conclusion}
+
+We have presented CALM, a framework for measuring process alignment between
+organizations and LLMs. Across legal (ECHR) and financial (German Credit)
+domains, we demonstrate that output accuracy masks substantial variation in
+process alignment, that models differ in which organizational values they
+implicitly encode, and that explicit externalization partially but
+incompletely closes the knowledge gap. The German Credit domain surfaces a
+distinct pluralistic challenge: when organizational norms encode historically
+discriminatory values, process alignment is not unconditionally desirable.
+CALM makes this tension measurable. We argue that pluralistic alignment
+research should extend beyond between-person value diversity to encompass
+between-organization diversity and the incommensurability of tacit
+institutional knowledge.
+
+% ── IMPACT STATEMENT ──────────────────────────────────────────────────────────
+
+\section*{Impact Statement}
+
+This work develops methods for measuring whether AI systems reason as
+specific organizations do. These methods have positive applications in
+auditing AI decision-making for process legitimacy and fairness. The same
+methods could, in principle, be used to align AI systems with organizations
+whose decision policies are discriminatory or harmful. We argue that
+surfacing this risk — as CALM does explicitly in the German Credit analysis
+— is preferable to leaving it invisible in output-level evaluations.
+
+% ── REFERENCES ────────────────────────────────────────────────────────────────
+
+\bibliography{calm_references}
+\bibliographystyle{icml2026}
+
+\end{document}

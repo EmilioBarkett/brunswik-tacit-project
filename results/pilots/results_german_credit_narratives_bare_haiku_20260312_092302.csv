@@ -1,0 +1,721 @@
+"case_id","model","condition","credit_risk","classification","correct","eval_input_tokens","eval_output_tokens","scoring_input_tokens","scoring_output_tokens","timestamp","response_text","cue_weights_json","error"
+"1","claude-haiku-4-5-20251001","bare","Good","Bad","False","298","985","1281","247","2026-03-12T09:23:16.311883","# Credit Risk Assessment: BAD
+
+## Classification Reasoning
+
+This applicant presents a **Bad credit risk** despite some mitigating factors. The combination of critical financial distress indicators, demographic vulnerabilities, and credit history concerns outweighs positive employment and stability factors.
+
+## Heavily Weighted Negative Factors
+
+**1. Negative Checking Account Balance (< 0 DM)**
+- This is the most critical red flag, indicating immediate financial distress
+- Suggests inability to manage current obligations and cash flow problems
+- Indicates the applicant is already in debt and struggling with liquidity
+
+**2. Critical Credit History**
+- ""Critical account / other credits existing (not at this bank)"" signals past payment difficulties
+- This is a strong predictor of future default behavior
+- Other creditors already view this applicant as problematic
+
+**3. No Savings / Unknown Bond Status**
+- Complete absence of financial reserves to weather emergencies
+- No buffer to handle job loss, health issues, or other disruptions
+- Increases vulnerability to any adverse change in circumstances
+
+**4. Age (67 years) + Foreign Worker Status**
+- Nearing or at retirement age with apparently no adequate savings
+- Foreign worker status may create visa/employment discontinuity risks
+- Reduced earning years remaining to recover from credit problems
+- Potential language/cultural barriers to financial management
+
+## Moderately Weighted Negative Factors
+
+**5. Existing Multiple Credits (2 at this bank)**
+- Already carrying existing loan obligations
+- Adding another 1,169 DM loan increases total debt burden
+- Combined obligations may exceed sustainable levels given income constraints
+
+**6. Checking Account Status Suggests Recent Default**
+- Combined with critical credit history, indicates pattern of non-payment
+- Applicant cannot be trusted to prioritize new loan payments
+
+## Weighted Positive Factors (Discounted)
+
+**1. Long Employment Stability (≥7 years)**
+- Normally a strong positive, but undermined by:
+  - Advanced age (approaching retirement when employment typically ends)
+  - Foreign worker status (visa-dependent employment could terminate)
+  - Employment appears insufficient to prevent financial distress (checking account negative)
+
+**2. Low Installment Rate (4% of disposable income)**
+- Seems manageable in isolation, but is unreliable given:
+  - Negative checking account suggests actual disposable income may be overstated
+  - Existing debts already strain finances
+  - No savings indicate current income insufficient to meet obligations
+
+**3. Real Estate Ownership + Home Ownership**
+- Discounted because:
+  - Properties may be mortgaged (not owned free-and-clear)
+  - Real estate is illiquid and cannot help with short-term credit obligations
+  - At age 67, unlikely to have substantial equity remaining
+  - Proves insufficient to prevent current financial distress
+
+**4. Telephone Registration + Stable Residence (4 years)**
+- Minimal predictive value for creditworthiness
+- Merely indicates basic stability, not ability to repay
+
+## Critical Considerations Beyond Stated Profile
+
+1. **Debt Spiral Risk**: An applicant with a negative checking balance obtaining new credit often uses it to service existing debts rather than for stated purpose (radio/television), deepening the debt cycle.
+
+2. **Retirement Income Cliff**: At 67, employment-based income will likely terminate, and pension income is likely insufficient given current financial distress.
+
+3. **Medical Expense Risk**: Age 67 brings increased health risks; a health crisis would eliminate income while increasing expenses.
+
+4. **Foreign Worker Employment Termination**: Immigration status/visa expiration could result in sudden loss of employment.
+
+5. **Loan Purpose Risk**: Radio/television purchase is discretionary, not essential—suggesting financial priorities are misaligned given critical account status.
+
+6. **Default Pattern**: Negative checking account + critical credit history suggests this is a repeat offender, making rehabilitation unlikely.
+
+## Conclusion
+
+While employment stability and debt-to-income ratios appear reasonable on paper, the **critical account status and credit history are disqualifying factors**. This applicant has demonstrated inability to manage current obligations and is in active financial distress. The combination with advanced age, foreign worker vulnerability, and zero savings creates a high-probability default scenario. 
+
+**Recommendation: Decline the application.** The risk of non-repayment substantially exceeds any mitigating factors.","{""checking_account_status"": ""HIGH"", ""duration_months"": ""NOT_MENTIONED"", ""credit_history"": ""HIGH"", ""purpose"": ""MEDIUM"", ""credit_amount"": ""MEDIUM"", ""savings_account_bonds"": ""HIGH"", ""employment_since"": ""MEDIUM"", ""installment_rate_pct"": ""MEDIUM"", ""personal_status_sex"": ""NOT_MENTIONED"", ""other_debtors_guarantors"": ""NOT_MENTIONED"", ""present_residence_since"": ""LOW"", ""property"": ""MEDIUM"", ""age_years"": ""HIGH"", ""other_installment_plans"": ""NOT_MENTIONED"", ""housing"": ""MEDIUM"", ""num_existing_credits"": ""MEDIUM"", ""job"": ""MEDIUM"", ""num_dependents"": ""NOT_MENTIONED"", ""telephone"": ""LOW"", ""foreign_worker"": ""HIGH""}",""
+"2","claude-haiku-4-5-20251001","bare","Bad","Bad","True","301","895","1191","250","2026-03-12T09:23:29.192195","# Credit Risk Assessment: BAD
+
+## Classification Rationale
+
+This applicant presents **moderate-to-high credit risk** despite some positive factors. The combination of weak liquidity position, limited employment history, young age with dependents, and foreign worker status creates sufficient concern to classify as a Bad credit risk.
+
+## Heavily Weighted Negative Factors
+
+1. **Checking Account Liquidity (0-<200 DM)** – Critical weakness
+   - Indicates minimal liquid reserves and limited cash management discipline
+   - Combined with savings <100 DM, suggests virtually no financial buffer
+   - High vulnerability to income disruption or unexpected expenses
+
+2. **Employment Stability (1-4 years)** – Moderate concern
+   - Relatively recent in current position; insufficient tenure to demonstrate stability
+   - Combined with foreign worker status, heightens employment security risk
+   - Less established career trajectory than preferred
+
+3. **Foreign Worker Status** – Elevated risk factor
+   - Subject to visa/permit renewal contingencies
+   - May face employment restrictions or deportation risk
+   - Potentially limited recourse if employment terminated unexpectedly
+   - Adds regulatory/legal complexity to loan recovery
+
+4. **Age (22) + Dependent (1) + Marital Status (divorced/separated/married)** – Risk concentration
+   - Very young with significant family responsibilities
+   - Limited life/financial experience at this critical stage
+   - Single income supporting dependents amplifies vulnerability
+
+## Moderately Weighted Positive Factors
+
+1. **Credit History** – Positive signal
+   - Existing credits paid duly suggests demonstrated repayment behavior
+   - Shows willingness to service obligations responsibly
+
+2. **Low Installment Rate (2% of disposable income)** – Favorable
+   - Monthly payment burden appears manageable relative to income
+   - Suggests careful loan sizing relative to financial capacity
+
+3. **Employment Level (skilled employee/official)** – Positive
+   - Higher-quality employment than unskilled positions
+   - Implies some professional stability and income reliability
+
+4. **Real Estate Ownership + Own Housing** – Asset backing
+   - Indicates wealth accumulation and collateral
+   - Provides theoretical recourse, though may be constrained for foreign workers
+
+## Discounted or Neutral Factors
+
+- **Loan Purpose (radio/television)** – Neutral/discretionary
+  - Consumer durables; not essential; suggests lifestyle rather than survival needs
+  - Raises questions about financial prioritization given weak liquidity
+
+- **Number of Existing Credits (1)** – Limited data
+  - Single existing credit shows some history but insufficient track record for strong confidence
+
+- **Loan Duration (48 months)** – Moderate duration
+  - 4-year term is standard; neither notably concerning nor reassuring
+
+## External Considerations Beyond Stated Profile
+
+1. **Geographic/Economic Context** – The DM denomination suggests this is a German/European applicant from the pre-Euro era. Foreign worker regulations in that context were strict; employment vulnerability would be material.
+
+2. **Age & Lifecycle Risk** – At 22, this applicant is at a statistically high-risk age for personal/financial instability, family disruption, and career changes.
+
+3. **Income Stability with Dependents** – Single income supporting a dependent creates mathematical vulnerability; any income loss becomes a crisis quickly.
+
+4. **Loan Purpose Prioritization** – A radio/television loan (discretionary) when maintaining zero emergency savings suggests poor financial judgment or constrained cash flow.
+
+## Conclusion
+
+While the applicant has demonstrated repayment discipline and has assets, the **combination of zero liquidity, limited employment tenure, foreign worker vulnerability, and young age with dependents** creates unacceptable default risk. The low installment rate is reassuring but insufficient to overcome fundamental weakness in financial position and employment security. This applicant would benefit from deferring non-essential credit until employment is more established and liquid reserves are built up.
+
+**Recommendation: Decline or require substantial co-signer/security.**","{""checking_account_status"": ""HIGH"", ""duration_months"": ""MEDIUM"", ""credit_history"": ""MEDIUM"", ""purpose"": ""DISCOUNTED"", ""credit_amount"": ""NOT_MENTIONED"", ""savings_account_bonds"": ""HIGH"", ""employment_since"": ""HIGH"", ""installment_rate_pct"": ""MEDIUM"", ""personal_status_sex"": ""NOT_MENTIONED"", ""other_debtors_guarantors"": ""NOT_MENTIONED"", ""present_residence_since"": ""NOT_MENTIONED"", ""property"": ""MEDIUM"", ""age_years"": ""HIGH"", ""other_installment_plans"": ""NOT_MENTIONED"", ""housing"": ""MEDIUM"", ""num_existing_credits"": ""LOW"", ""job"": ""MEDIUM"", ""num_dependents"": ""HIGH"", ""telephone"": ""NOT_MENTIONED"", ""foreign_worker"": ""HIGH""}",""
+"3","claude-haiku-4-5-20251001","bare","Good","Bad","False","293","851","1147","236","2026-03-12T09:23:41.146697","# Credit Risk Assessment: BAD
+
+## Classification
+This applicant presents a **BAD credit risk** and should be denied the loan.
+
+## Reasoning
+
+### Heavily Weighted Negative Factors
+
+**1. Critical Credit History (Primary Concern)**
+- ""Critical account / other credits existing"" is a major red flag
+- This indicates past payment problems or defaults
+- This is the single most predictive factor of future default
+- The applicant cannot be trusted to honor previous obligations
+
+**2. No Checking Account**
+- Suggests financial instability or inability to maintain basic banking relationships
+- Makes loan servicing and repayment monitoring more difficult
+- Indicates limited financial integration or past banking issues
+
+**3. Inadequate Savings (< 100 DM)**
+- Virtually no financial cushion for emergencies
+- Combined with low disposable income (2% installment rate suggests modest income), demonstrates financial fragility
+- No capacity to absorb unexpected shocks
+
+**4. Unskilled, Resident Foreign Worker Status**
+- Limited job security and earning stability despite 4-7 years tenure
+- Foreign worker status may face employment vulnerability
+- Likely lower wages with limited advancement potential
+- Higher displacement risk in economic downturns
+
+**5. Weak Employment Stability Duration**
+- 4 to <7 years is relatively short-term
+- Combined with unskilled status, suggests limited career foundation
+
+### Moderately Weighted Concerns
+
+**6. Recent Residence (3 years)**
+- Relatively short tenure at current residence
+- Suggests some instability, though not critical
+
+**7. Low Loan Amount**
+- While the 2,096 DM loan is small (reducing absolute loss exposure), it's inadequate compensation for the risk profile
+- The low amount should not offset serious credit quality concerns
+
+### Discounted or Neutral Factors
+
+**Age (49) and Marital Status (Single, 2 dependents)**
+- Age alone is not deterministic; however, combined with other factors (limited savings, modest income, foreign worker status), there's less time/earning capacity to recover from setbacks
+- Family obligations with limited savings is a vulnerability
+
+**Real Estate Ownership & Own Housing**
+- Positive asset indicators that provide *some* collateral/security
+- However, these don't override fundamental credit character issues
+- A homeowner with critical account status remains high-risk
+
+**One Existing Credit at Bank**
+- Suggests some lending history, but insufficient to offset critical payment problems
+- We don't know the performance of this existing credit
+
+**Telephone Registration**
+- Minor factor; absence is neutral in modern assessment
+
+### Knowledge and Considerations Beyond Stated Profile
+
+1. **Credit History Primacy**: In credit risk assessment, past behavior is the strongest predictor of future behavior. A ""critical account"" notation typically indicates serious delinquency (90+ days late) or default—this is nearly disqualifying on its own.
+
+2. **Income Stability for Foreign Workers**: Immigration and labor market dynamics create additional employment volatility for foreign workers that standard employment duration doesn't fully capture.
+
+3. **Debt Service Capacity**: A 2% installment rate on disposable income is healthy *if* the underlying income is stable and adequate. Given the critical credit history and minimal savings, this suggests insufficient overall financial health rather than healthy cash flow.
+
+4. **Loan Purpose (Education)**: Education loans for an existing employee age 49 are somewhat unusual and may indicate career instability or difficulty advancing—though this is speculative.
+
+## Conclusion
+
+The critical credit history is disqualifying. The combination of past payment problems, zero financial buffer, marginal employment stability, and no banking relationship creates unacceptable risk. This applicant should not receive credit until demonstrating rehabilitated credit behavior over an extended period (typically 2+ years of clean payment history).","{""checking_account_status"": ""HIGH"", ""duration_months"": ""MEDIUM"", ""credit_history"": ""HIGH"", ""purpose"": ""LOW"", ""credit_amount"": ""MEDIUM"", ""savings_account_bonds"": ""HIGH"", ""employment_since"": ""MEDIUM"", ""installment_rate_pct"": ""MEDIUM"", ""personal_status_sex"": ""LOW"", ""other_debtors_guarantors"": ""NOT_MENTIONED"", ""present_residence_since"": ""MEDIUM"", ""property"": ""LOW"", ""age_years"": ""LOW"", ""other_installment_plans"": ""NOT_MENTIONED"", ""housing"": ""LOW"", ""num_existing_credits"": ""LOW"", ""job"": ""HIGH"", ""num_dependents"": ""LOW"", ""telephone"": ""LOW"", ""foreign_worker"": ""MEDIUM""}",""
+"4","claude-haiku-4-5-20251001","bare","Good","Bad","False","300","855","1151","250","2026-03-12T09:23:53.582458","# Credit Risk Assessment: BAD
+
+## Classification Justification
+
+This applicant presents **significant credit risk** despite some mitigating factors. The combination of negative liquidity indicators, foreign worker status, and dependent obligations outweighs the positive employment and collateral factors.
+
+## Heavily Weighted Risk Factors
+
+**1. Negative Checking Account Balance (< 0 DM)**
+- This is the most alarming indicator. A negative balance suggests current financial stress and inability to manage basic cash flow.
+- It indicates the applicant is already borrowing to cover routine expenses, raising questions about repayment capacity.
+
+**2. Minimal Savings (< 100 DM)**
+- Combined with the negative checking account, this reveals zero financial buffer or emergency reserves.
+- With 2 dependents, this is particularly concerning—any income disruption would immediately threaten loan repayment.
+
+**3. Foreign Worker Status**
+- Immigration/work permit status creates employment vulnerability not fully captured by ""4-7 years"" stability.
+- Foreign workers face higher unemployment risk and potential deportation, making income less secure than local workers.
+- Work permit renewal risks aren't accounted for in the employment duration metric.
+
+**4. Two Dependents + Free Housing**
+- While free housing reduces living costs, two dependents with minimal savings indicates limited discretionary income.
+- The 2% installment rate (low on surface) may actually reflect a tight budget with little margin.
+
+## Weighted Positive Factors
+
+**1. Employment Stability (4-7 years)**
+- Demonstrates a sustained work history that suggests reliable income.
+- Skilled employee/official status is respectable.
+
+**2. Moderate Loan Amount (7,882 DM) and Rate (2%)**
+- The installment burden is reasonable relative to disposable income.
+- Loan duration of 42 months is manageable.
+
+**3. Property Ownership (Building Society Savings Agreement)**
+- Indicates some asset accumulation and financial discipline in the past.
+- Provides potential collateral/recovery mechanism.
+
+**4. Existing Credit History**
+- ""Existing credits paid back duly till now"" suggests past repayment reliability.
+- Already has 1 credit at this bank with presumably satisfactory performance.
+
+## Discounted Factors
+
+**Guarantor Status**
+- While the presence of a guarantor is nominally positive, it raises questions: Why is a guarantor needed if the applicant's profile is strong? This suggests even the applicant or bank recognizes elevated risk.
+
+**Telephone Registration**
+- The absence of a registered telephone is a minor risk indicator (suggests less community integration/stability), but is relatively insignificant compared to liquidity issues.
+
+## Critical Contextual Considerations
+
+1. **Credit Scoring Context**: This profile appears consistent with German credit assessment practices (DM currency, specific variable names). The negative account balance and minimal savings would typically trigger decline flags in standard credit scoring models.
+
+2. **Economic/Immigration Environment**: Depending on the year and economic conditions, foreign worker employment could be particularly vulnerable to economic downturns or political policy changes.
+
+3. **Dependency Vulnerability**: Two dependents with no savings creates a fragile household—job loss or income reduction has immediate, severe consequences.
+
+4. **""Paid duly till now"" caveat**: Past performance doesn't guarantee future ability, especially given the applicant's deteriorating liquidity position (negative account now vs. apparent adequacy when previous credits were taken).
+
+## Conclusion
+
+The applicant's **current financial distress** (negative account, no savings) is incompatible with safely extending additional credit, despite evidence of past reliability and reasonable employment stability. The foreign worker status adds employment uncertainty. **Recommendation: Decline or require significant risk mitigation** (larger down payment, guarantor enhancement, or salary verification and account monitoring conditions).","{""checking_account_status"": ""HIGH"", ""duration_months"": ""MEDIUM"", ""credit_history"": ""MEDIUM"", ""purpose"": ""NOT_MENTIONED"", ""credit_amount"": ""MEDIUM"", ""savings_account_bonds"": ""HIGH"", ""employment_since"": ""MEDIUM"", ""installment_rate_pct"": ""MEDIUM"", ""personal_status_sex"": ""NOT_MENTIONED"", ""other_debtors_guarantors"": ""DISCOUNTED"", ""present_residence_since"": ""NOT_MENTIONED"", ""property"": ""MEDIUM"", ""age_years"": ""NOT_MENTIONED"", ""other_installment_plans"": ""NOT_MENTIONED"", ""housing"": ""MEDIUM"", ""num_existing_credits"": ""MEDIUM"", ""job"": ""MEDIUM"", ""num_dependents"": ""HIGH"", ""telephone"": ""LOW"", ""foreign_worker"": ""HIGH""}",""
+"5","claude-haiku-4-5-20251001","bare","Bad","Bad","True","296","754","1050","254","2026-03-12T09:24:05.065342","# Credit Risk Assessment: BAD
+
+## Classification Reasoning
+
+This applicant presents **significant credit risk** despite some mitigating factors. The combination of negative indicators—particularly the negative checking account balance, past payment delays, minimal savings, and foreign worker status—outweighs the positive elements.
+
+## Heavily Weighted Risk Factors
+
+**1. Negative Checking Account Balance (< 0 DM)**
+- This is the most concerning indicator. A negative balance suggests chronic cash flow problems and inability to maintain basic financial discipline.
+- Signals immediate liquidity crisis and payment capacity issues.
+
+**2. Credit History: Delay in Paying Off in the Past**
+- Past delinquency is one of the strongest predictors of future default.
+- Combined with current negative account status, this suggests a pattern rather than an isolated incident.
+
+**3. Minimal Savings (< 100 DM)**
+- No financial buffer for emergencies or income disruption.
+- At age 53, savings should be substantially higher for retirement security and financial stability.
+
+**4. Foreign Worker Status**
+- Higher employment instability risk (visa/work permit renewal, repatriation risk).
+- Potentially more difficulty with debt collection across borders.
+
+**5. High Debt Obligations Relative to Stability**
+- Despite ""3% installment rate,"" the applicant already has 2 existing credits.
+- Adding another 24-month loan increases financial stress.
+
+## Mitigating Factors (Discounted)
+
+**Employment stability (1-4 years)** and **skilled employee status**: While positive, these are insufficient given the credit history and current financial state. Employment stability doesn't guarantee payment capacity when accounts are already negative.
+
+**Low installment rate (3%)**: This is relatively favorable but appears inconsistent with the negative checking account—if disposable income truly supports only 3% installment burden, why is the account overdrawn?
+
+**Housing (free)**: Eliminates major expense but doesn't address existing cash flow problems.
+
+**Loan purpose (car purchase)**: While car purchases are generally lower risk than discretionary spending, a 53-year-old with 2 dependents and negative cash flow should not be financing new vehicle purchases.
+
+## Key Considerations Beyond Stated Information
+
+1. **Age and Life Stage**: At 53, this applicant should be consolidating finances and building reserves, not accumulating debt with poor cash flow management.
+
+2. **Dependent Support**: With 2 dependents and free housing only, income must cover basic living expenses plus child support/care—suggesting tight margins.
+
+3. **Foreign Worker Vulnerability**: Economic downturns or policy changes could jeopardize employment more quickly than domestic workers.
+
+4. **Pattern Indicator**: The combination of past delays + current negative balance suggests systemic spending/budgeting issues rather than temporary hardship.
+
+5. **Loan Purpose Concern**: Financing a *new* car (depreciating asset) rather than transportation necessity during financial distress signals poor financial judgment.
+
+## Conclusion
+
+The applicant lacks both the **financial capacity** (negative account, minimal savings) and the **demonstrated reliability** (payment delays in past) necessary to responsibly manage additional credit. The risk of default is substantial.
+
+**Recommendation: Decline the application** unless the applicant can provide evidence of account stabilization, secured collateral beyond the vehicle, or a co-signer.","{""checking_account_status"": ""HIGH"", ""duration_months"": ""MEDIUM"", ""credit_history"": ""HIGH"", ""purpose"": ""MEDIUM"", ""credit_amount"": ""MEDIUM"", ""savings_account_bonds"": ""HIGH"", ""employment_since"": ""DISCOUNTED"", ""installment_rate_pct"": ""DISCOUNTED"", ""personal_status_sex"": ""NOT_MENTIONED"", ""other_debtors_guarantors"": ""NOT_MENTIONED"", ""present_residence_since"": ""NOT_MENTIONED"", ""property"": ""NOT_MENTIONED"", ""age_years"": ""MEDIUM"", ""other_installment_plans"": ""MEDIUM"", ""housing"": ""DISCOUNTED"", ""num_existing_credits"": ""MEDIUM"", ""job"": ""DISCOUNTED"", ""num_dependents"": ""MEDIUM"", ""telephone"": ""NOT_MENTIONED"", ""foreign_worker"": ""HIGH""}",""
+"6","claude-haiku-4-5-20251001","bare","Good","Bad","False","297","1013","1309","239","2026-03-12T09:24:22.941192","# Credit Risk Assessment: BAD
+
+## Classification Reasoning
+
+This applicant presents a **Bad credit risk** profile, despite some mitigating factors. The combination of structural vulnerabilities outweighs the positive elements.
+
+## Heavily Weighted Negative Factors
+
+**1. Foreign Worker Status (High Weight)**
+- Foreign workers face higher deportation/relocation risk, potentially disrupting income stability
+- May face legal/visa restrictions affecting future employment
+- This is a material risk factor in most credit frameworks
+
+**2. Unskilled Employment + Moderate Tenure (High Weight)**
+- 1-4 years in current position is relatively unstable for unskilled work
+- Unskilled positions typically have higher turnover and lower job security
+- Limited advancement opportunities or wage growth trajectory
+- 36-month loan term extends well beyond typical job stability for this demographic
+
+**3. No Financial Safety Net (High Weight)**
+- No checking account (suggests limited banking relationships/financial discipline)
+- Unknown savings; stated no savings account
+- No property ownership or collateral
+- This applicant has zero buffer against income disruption
+
+**4. Education Loan Purpose with Weak Profile (Medium Weight)**
+- While education loans are generally favorable, this applicant's profile suggests he may be seeking retraining due to employment instability rather than advancement
+- At age 35 with unskilled status, the return on education investment is uncertain
+
+## Moderately Weighted Negative Factors
+
+**5. No Checking Account (Medium Weight)**
+- Suggests limited financial sophistication or banking integration
+- Makes loan servicing logistics more difficult
+- May indicate cash-based lifestyle (harder to monitor/verify income)
+
+**6. Housing ""For Free"" (Low-Medium Weight)**
+- While reducing housing costs improves cash flow, it suggests financial dependency (living with family/others)
+- Reduces flexibility if employment circumstances change
+
+## Positive Factors (Discounted)
+
+**1. Low Installment Rate (2% of disposable income) - Discounted Moderately**
+- This is favorable *in isolation*, but assumes stated disposable income is reliable
+- With unskilled employment and unknown savings, this assumed stability is questionable
+- May be artificially low given undisclosed financial obligations
+
+**2. Existing Credit History ""Paid Back Duly"" (Discounted Moderately)**
+- One existing credit at the bank is positive, but:
+  - We don't know the size, type, or terms of that credit
+  - One successful credit doesn't offset structural employment/financial stability concerns
+  - Good past performance ≠ capacity to handle new obligation given employment risk
+
+**3. Telephone Registered + 4 Years Residence (Discounted Lightly)**
+- Minor stability indicators
+- Suggests some residential permanence, but contradicted by foreign worker visa uncertainty
+
+**4. No Other Debts/Dependents Listed (Discounted)**
+- While having 2 dependents increases obligations, ""none"" listed suggests either:
+  - He genuinely has no other debts (positive), but
+  - He may be hiding obligations, or
+  - The dependents he supports aren't formally recognized as debts, creating underestimated obligations
+
+## Knowledge/Considerations Beyond Profile
+
+1. **Regulatory Context**: Most credit frameworks (including German banking standards, if this is German data based on DM currency) view foreign worker status as a material risk factor requiring additional scrutiny.
+
+2. **Economic Cyclicality**: Unskilled workers are highly vulnerable to economic downturns, and employment in this category is often first to be cut.
+
+3. **Education ROI**: At 35 years old with unskilled status, the long-term return on a 36-month education loan is uncertain. If the loan is for job retraining in a declining field, risk increases.
+
+4. **Loan-to-Income Ratio**: A 9,055 DM loan over 36 months (~251/month) may be manageable if disposable income is high, but the lack of financial reserves makes any income disruption catastrophic.
+
+## Conclusion
+
+The applicant's **structural vulnerabilities** (foreign worker status, unskilled employment, minimal tenure, no financial buffers) create unacceptable default risk that overshadows the favorable installment rate and one positive credit history. The profile suggests a borrower with limited resilience to income shocks. 
+
+**Recommendation**: Decline or require significant additional security (guarantor, collateral, or restructured terms with shorter duration and lower amount).","{""checking_account_status"": ""HIGH"", ""duration_months"": ""HIGH"", ""credit_history"": ""MEDIUM"", ""purpose"": ""MEDIUM"", ""credit_amount"": ""MEDIUM"", ""savings_account_bonds"": ""HIGH"", ""employment_since"": ""HIGH"", ""installment_rate_pct"": ""DISCOUNTED"", ""personal_status_sex"": ""NOT_MENTIONED"", ""other_debtors_guarantors"": ""MEDIUM"", ""present_residence_since"": ""LOW"", ""property"": ""HIGH"", ""age_years"": ""MEDIUM"", ""other_installment_plans"": ""NOT_MENTIONED"", ""housing"": ""LOW"", ""num_existing_credits"": ""MEDIUM"", ""job"": ""HIGH"", ""num_dependents"": ""MEDIUM"", ""telephone"": ""LOW"", ""foreign_worker"": ""HIGH""}",""
+"7","claude-haiku-4-5-20251001","bare","Good","Good","True","296","690","986","252","2026-03-12T09:24:33.536636","# Credit Risk Assessment: GOOD
+
+## Classification Reasoning
+
+This applicant presents a **favorable credit risk profile** with multiple compensating factors that outweigh concerns. While some risk indicators exist, the overall pattern suggests reasonable creditworthiness.
+
+## Factors Weighted Most Heavily (Positive)
+
+1. **Strong Employment Stability (≥7 years)** — This is the most critical factor. Long-term employment as a skilled employee/official demonstrates income reliability and reduced unemployment risk, which is the primary driver of default.
+
+2. **Excellent Credit History** — ""Existing credits paid back duly till now"" indicates demonstrated repayment discipline. Past behavior is the strongest predictor of future behavior.
+
+3. **Low Loan Burden (3% of disposable income)** — An installment rate of only 3% is very conservative, leaving substantial capacity to absorb financial shocks. This is a critical protective factor.
+
+4. **Low Credit Amount (2,835 DM)** — A modest loan size relative to demonstrated savings and income, reducing absolute loss exposure.
+
+5. **Established Residence (4 years)** — Indicates stability and reduced likelihood of flight risk.
+
+6. **Existing Banking Relationship** — Already has 1 credit with the bank, suggesting acceptable prior performance.
+
+## Factors Discounted and Why
+
+1. **No Checking Account** — While traditionally concerning for payment discipline, this is offset by the low installment rate and prior good credit history. Possibly reflects preference rather than inability.
+
+2. **No Telephone Registered** — A minor operational inconvenience but not predictive of credit risk in substance.
+
+3. **Foreign Worker Status** — While historically a risk flag in credit assessments, this is substantially mitigated by: 7+ years employment stability, property ownership, and established residence duration, all suggesting legal status and integration.
+
+4. **Moderate Savings (500-1000 DM)** — While not substantial, combined with low debt burden and strong employment, this is adequate.
+
+5. **One Dependent** — Adds obligations but at age 53 with stable employment, likely manageable.
+
+## Key Considerations Beyond the Profile
+
+- **Loan Purpose** — Furniture/equipment for a skilled employee suggests business investment or home improvement, typically lower-risk purposes than consumer goods or debt consolidation
+- **Age (53)** — Later-career stability may indicate established earning trajectory and reduced job-hopping risk
+- **Property Ownership via Savings Agreement** — Demonstrates financial discipline and genuine assets
+
+## Risk Factors Not Fully Mitigated
+
+- The absence of a checking account does present operational friction for payment processing
+- Limited liquid savings relative to loan amount creates modest buffer concerns
+- Foreign worker status, while contextualized positively, may carry institutional or regulatory risks not apparent in this data
+
+## Conclusion
+
+The **strong employment history, demonstrated credit discipline, and very conservative debt-to-income ratio** form a solid foundation that compensates for the administrative and demographic concerns. The loan structure itself is conservative relative to the applicant's apparent capacity. **Recommend approval** with standard monitoring.","{""checking_account_status"": ""DISCOUNTED"", ""duration_months"": ""NOT_MENTIONED"", ""credit_history"": ""HIGH"", ""purpose"": ""MEDIUM"", ""credit_amount"": ""HIGH"", ""savings_account_bonds"": ""MEDIUM"", ""employment_since"": ""HIGH"", ""installment_rate_pct"": ""HIGH"", ""personal_status_sex"": ""NOT_MENTIONED"", ""other_debtors_guarantors"": ""NOT_MENTIONED"", ""present_residence_since"": ""MEDIUM"", ""property"": ""MEDIUM"", ""age_years"": ""MEDIUM"", ""other_installment_plans"": ""NOT_MENTIONED"", ""housing"": ""NOT_MENTIONED"", ""num_existing_credits"": ""MEDIUM"", ""job"": ""HIGH"", ""num_dependents"": ""MEDIUM"", ""telephone"": ""DISCOUNTED"", ""foreign_worker"": ""DISCOUNTED""}",""
+"8","claude-haiku-4-5-20251001","bare","Good","Bad","False","317","1024","1324","253","2026-03-12T09:24:49.398397","# Credit Risk Assessment: BAD
+
+## Classification Rationale
+
+This applicant presents a **BAD credit risk** despite some positive indicators. The combination of weak liquidity, limited savings, and concerning behavioral/stability factors outweighs the strengths in income and employment.
+
+## Weighted Factors Analysis
+
+### HEAVILY WEIGHTED NEGATIVE FACTORS:
+
+**1. Severely Limited Liquidity (Checking Account: 0-200 DM)**
+- This is the single most concerning factor
+- Indicates minimal financial buffer for emergencies
+- Suggests living paycheck-to-paycheck despite management-level employment
+- Raises red flags about financial discipline and cash flow management
+
+**2. Negligible Savings (< 100 DM)**
+- Combined with low checking balance, this indicates no financial cushion
+- For a 35-year-old in management position, this is unusually low
+- Suggests either poor financial planning or recent financial distress
+- High vulnerability to payment disruption from any unexpected expense
+
+**3. Foreign Worker Status**
+- Creates employment stability risk (visa/permit dependencies)
+- Potential language/integration barriers
+- Regulatory/residency uncertainties that could affect repayment ability
+- Higher mobility risk (may leave country)
+
+**4. High Installment Burden Relative to Profile**
+- 2% of disposable income for a 6,948 DM loan over 36 months
+- While 2% appears low, combined with existing credit and dependents, suggests tight budget
+- Single income supporting 1 dependent with limited financial reserves
+
+### MODERATELY WEIGHTED NEGATIVE FACTORS:
+
+**5. Short Employment Tenure (1-4 years)**
+- Not established long enough in current role
+- Combined with foreign worker status, adds uncertainty
+- 35 years old with relatively recent job change raises questions
+
+**6. Single Income with Dependent**
+- No second household income to mitigate risk
+- Sole earner with one dependent (child/family member likely)
+- Single point of failure for repayment
+
+### POSITIVELY WEIGHTED FACTORS:
+
+**1. Loan Purpose: Used Car**
+- Has tangible collateral (though car depreciates)
+- Somewhat better than consumption credit
+- But for someone already stretching financially, this loan adds fixed obligations
+
+**2. Employment Level: Management/Highly Qualified**
+- Income level likely adequate
+- Suggests earning capacity
+- However, contradicts the liquidity situation—why so little savings?
+
+**3. Credit History: Paid Duly Till Now**
+- Positive behavior on existing credit
+- Shows some repayment discipline
+- Only minor offset to liquidity concerns
+
+**4. Existing Relationship: 1 credit at bank**
+- Bank has some history with applicant
+- Suggests some vetting already completed
+- Insufficient to overcome other risk factors
+
+### DISCOUNTED FACTORS:
+
+**Telephone Registration & Other Administrative Details**
+- These are hygiene factors, not predictive of credit quality
+- Inclusion suggests missing more meaningful data points
+
+**Loan Duration (36 months)**
+- Moderate term, neither particularly risky nor reassuring
+- Without knowing actual payment amount, difficult to assess burden
+
+## Knowledge & External Considerations
+
+**1. German Credit Context (Historical DM Usage)**
+- This assessment appears based on German credit data (likely Statlog/UCI dataset)
+- German labor law and social systems provide some employment protection
+- However, foreign worker protections are weaker than citizens'
+
+**2. Behavioral Finance Insights**
+- The disconnect between management-level employment and near-zero savings is a major red flag
+- Suggests either: recent financial crisis, poor financial literacy, undisclosed debts, or unstable housing/family situation
+- This behavioral indicator often predicts future payment difficulties
+
+**3. Cash Flow vs. Stated Income**
+- Even if gross income is adequate, the checking/savings picture indicates actual cash flow problems
+- This is more predictive than stated employment level
+
+**4. Systemic Risk Factors**
+- Late 1990s context: Eastern European immigration concerns in Germany
+- Foreign worker vulnerability to economic cycles
+- Potential discrimination issues aside, objectively more employment risk
+
+## Conclusion
+
+While this applicant has stable employment and some positive credit history, the **severe lack of financial reserves combined with foreign worker status and single-income household dependency creates unacceptable risk**. The absence of any financial buffer suggests this applicant would struggle to maintain payments if any disruption occurs—a highly probable scenario given the risk profile. **Recommend: DECLINE** unless significant collateral or guarant","{""checking_account_status"": ""HIGH"", ""duration_months"": ""LOW"", ""credit_history"": ""MEDIUM"", ""purpose"": ""MEDIUM"", ""credit_amount"": ""MEDIUM"", ""savings_account_bonds"": ""HIGH"", ""employment_since"": ""MEDIUM"", ""installment_rate_pct"": ""MEDIUM"", ""personal_status_sex"": ""NOT_MENTIONED"", ""other_debtors_guarantors"": ""NOT_MENTIONED"", ""present_residence_since"": ""NOT_MENTIONED"", ""property"": ""NOT_MENTIONED"", ""age_years"": ""MEDIUM"", ""other_installment_plans"": ""NOT_MENTIONED"", ""housing"": ""NOT_MENTIONED"", ""num_existing_credits"": ""MEDIUM"", ""job"": ""MEDIUM"", ""num_dependents"": ""MEDIUM"", ""telephone"": ""DISCOUNTED"", ""foreign_worker"": ""HIGH""}",""
+"9","claude-haiku-4-5-20251001","bare","Good","Bad","False","294","1024","1323","240","2026-03-12T09:25:04.818738","# Credit Risk Assessment: BAD
+
+## Classification Reasoning
+
+This applicant presents **elevated credit risk** despite some mitigating factors. The combination of demographic vulnerabilities, structural weaknesses, and insufficient compensatory strengths outweighs the positive indicators.
+
+## Factors Weighted Most Heavily (Negative)
+
+1. **Age (61) + Foreign Worker Status + Unskilled Labor**
+   - At retirement age with unskilled employment creates employment vulnerability
+   - Foreign worker status may compound job security concerns and potential language/integration barriers
+   - Limited earning years remaining to recover from defaults
+   - *Weight: HIGH* — This is the most concerning cluster as it suggests precarious income stability
+
+2. **No Checking Account**
+   - Indicates weak banking relationship and financial integration
+   - Suggests limited financial formality or banking access
+   - Red flag for financial management and payment reliability
+   - *Weight: HIGH* — Practical barrier to payment discipline
+
+3. **Divorced/Separated Status + 1 Dependent**
+   - Potential alimony/child support obligations not mentioned in profile
+   - Single income supporting dependent creates financial fragility
+   - *Weight: MEDIUM-HIGH* — Suggests tighter budget margins
+
+4. **Employment Stability: 4-7 years**
+   - While not recent, this is still relatively short tenure given age
+   - For unskilled workers, this duration offers modest confidence only
+   - *Weight: MEDIUM*
+
+## Factors Weighted as Mitigating (Positive)
+
+1. **Loan Amount and Terms Reasonable**
+   - 3,059 DM is modest; 12-month duration is manageable
+   - Only 2% of disposable income required for installments (very low ratio)
+   - *Weight: MEDIUM* — Shows appropriate loan sizing, but insufficient to offset risks
+
+2. **Savings/Bonds >= 1,000 DM**
+   - Demonstrates some financial discipline and backup liquidity
+   - Provides buffer for payment interruptions
+   - *Weight: MEDIUM* — Helpful, but age and employment precarity remain concerns
+
+3. **Good Credit History**
+   - ""Existing credits paid back duly till now"" is positive
+   - Shows track record of meeting obligations
+   - *Weight: MEDIUM* — Past behavior is encouraging but doesn't guarantee future stability
+
+4. **Real Estate Ownership + Own Housing**
+   - Indicates accumulated assets and stability
+   - Low housing cost vulnerability
+   - *Weight: MEDIUM* — Helps collateral position but doesn't address income risk
+
+5. **No Other Installment Plans**
+   - Clean slate on current obligations
+   - *Weight: LOW-MEDIUM* — Reduces immediate payment competition but doesn't offset other risks
+
+## Factors Discounted/Neutral
+
+- **Present residence 4 years**: Reasonable stability indicator, but not exceptional
+- **One existing credit at bank**: Modest relationship history; unclear payment performance
+- **No telephone registered**: Neutral to slightly negative in modern context (limits contact capability)
+- **Number of dependents (1)**: Already factored into family obligation risk
+
+## Knowledge and Contextual Considerations
+
+1. **German Credit Context (Implicit)**: This appears to be German lending data (DM currency, structure). In German lending, foreign workers face documented higher default rates, particularly in unskilled positions.
+
+2. **Age-Employment Mismatch**: At 61, an unskilled worker faces rapid employment termination risk through:
+   - Age discrimination (legal in many contexts)
+   - Physical demands of unskilled labor
+   - Pension/early retirement eligibility creating employer incentives to separate
+
+3. **""Unskilled - Resident"" Classification**: The ""resident"" descriptor for foreign workers historically indicates lower-wage, lower-security positions (guest worker context).
+
+4. **Compensating Factors Insufficient**: While the low installment rate (2%) and modest loan amount suggest repayment capacity *today*, they don't address the **structural fragility** of the income source.
+
+5. **Real Estate as False Security**: Property ownership is positive, but an unskilled foreign worker nearing retirement age would face significant obstacles liquidating assets quickly if employment ended.
+
+## Conclusion
+
+This applicant represents a **""marginal-to-poor"" risk** because employment stability is the critical vulnerability for any unsecured consumer loan, and this applicant has multiple compounding vulnerabilities in employment security (age, skill level, foreign worker status). The positive factors (savings, good history, low payment burden, real estate) are **necessary but insufficient","{""checking_account_status"": ""HIGH"", ""duration_months"": ""MEDIUM"", ""credit_history"": ""MEDIUM"", ""purpose"": ""NOT_MENTIONED"", ""credit_amount"": ""MEDIUM"", ""savings_account_bonds"": ""MEDIUM"", ""employment_since"": ""MEDIUM"", ""installment_rate_pct"": ""MEDIUM"", ""personal_status_sex"": ""MEDIUM"", ""other_debtors_guarantors"": ""NOT_MENTIONED"", ""present_residence_since"": ""LOW"", ""property"": ""MEDIUM"", ""age_years"": ""HIGH"", ""other_installment_plans"": ""LOW"", ""housing"": ""MEDIUM"", ""num_existing_credits"": ""LOW"", ""job"": ""HIGH"", ""num_dependents"": ""MEDIUM"", ""telephone"": ""LOW"", ""foreign_worker"": ""HIGH""}",""
+"10","claude-haiku-4-5-20251001","bare","Bad","Bad","True","311","779","1075","248","2026-03-12T09:25:21.554383","# Credit Risk Assessment: BAD
+
+## Classification Rationale
+
+This applicant presents **significant and multiple risk factors** that outweigh mitigating elements, warranting classification as a Bad credit risk.
+
+## Heavily Weighted Risk Factors
+
+**1. Employment Status Contradiction (Critical)**
+The profile lists the applicant as both ""unemployed"" AND ""management / self-employed / highly qualified employee / officer."" This is internally inconsistent and highly concerning:
+- If genuinely unemployed, there is no income source to service the debt
+- If self-employed, self-employment income is inherently volatile and difficult to verify
+- This ambiguity itself signals either data quality issues or concealed employment instability
+
+**2. Minimal Liquid Assets & Cash Flow Stress**
+- Checking account: 0-200 DM (essentially no buffer)
+- Savings: <100 DM (negligible reserves)
+- These figures suggest no financial cushion for emergencies or payment disruptions
+- The 4% installment rate appears low only in isolation; with near-zero reserves, any income disruption is catastrophic
+
+**3. Critical Credit History**
+- ""Critical account / other credits existing"" indicates past payment problems or problematic credit behavior
+- This is a direct predictor of future default risk
+- Already managing 2 existing credits at this bank, suggesting possible over-leverage
+
+**4. Foreign Worker Status**
+- Visa/work permit stability is often uncertain
+- Employment and residence rights could be terminated, eliminating income source
+- Adds deportation or relocation risk beyond typical applicant risk
+
+## Moderately Concerning Factors
+
+**5. Short Residence Duration (2 years)**
+- Suggests recent relocation; stability unknown
+- Combined with foreign worker status, increases flight risk
+
+**6. Loan Purpose: New Car (5,234 DM)**
+- Depreciating asset with no production capability
+- Does not generate income to service debt
+- Appears discretionary given employment uncertainty
+
+## Factors That Did Not Overcome Risk Profile
+
+- **Married status & dependent**: Provides some stability signal, but doesn't address income verification
+- **Existing property ownership**: Housing is owned, which is positive, but this applicant is overleveraged already with 2 bank credits
+- **Low installment rate (4%)**: Misleading positive; low percentage of disposable income means either low income (bad) or very low requested amount relative to risk factors (immaterial)
+
+## Beyond the Data: Key Considerations
+
+1. **Verification capability**: The employment contradiction makes standard income verification impossible. Red flags should trigger enhanced due diligence.
+
+2. **Portfolio risk**: Two existing credits plus this new loan suggest the applicant is reaching or exceeding debt service capacity—especially problematic with near-zero savings.
+
+3. **Geopolitical/regulatory context**: This appears to be German credit data (DM, German employment terms). Foreign worker lending carried elevated risk during the periods this framework was likely developed.
+
+4. **Behavioral signal**: Applying for a discretionary car loan while maintaining critical account status and minimal savings suggests either poor financial literacy or desperation—both negative indicators.
+
+## Conclusion
+
+The confluence of employment ambiguity, critical credit history, minimal reserves, foreign worker status, and overleveraging creates a **compound risk profile** where no single factor is determinative, but together they strongly indicate high default probability. The applicant should be **declined** unless the employment status can be immediately and credibly clarified, and reserves/income substantially improved.","{""checking_account_status"": ""HIGH"", ""duration_months"": ""NOT_MENTIONED"", ""credit_history"": ""HIGH"", ""purpose"": ""MEDIUM"", ""credit_amount"": ""MEDIUM"", ""savings_account_bonds"": ""HIGH"", ""employment_since"": ""NOT_MENTIONED"", ""installment_rate_pct"": ""DISCOUNTED"", ""personal_status_sex"": ""MEDIUM"", ""other_debtors_guarantors"": ""NOT_MENTIONED"", ""present_residence_since"": ""MEDIUM"", ""property"": ""MEDIUM"", ""age_years"": ""NOT_MENTIONED"", ""other_installment_plans"": ""HIGH"", ""housing"": ""MEDIUM"", ""num_existing_credits"": ""HIGH"", ""job"": ""HIGH"", ""num_dependents"": ""MEDIUM"", ""telephone"": ""NOT_MENTIONED"", ""foreign_worker"": ""HIGH""}",""
