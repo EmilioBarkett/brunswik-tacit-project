@@ -573,6 +573,10 @@ def main():
     parser.add_argument("--output",      default="analysis")
     parser.add_argument("--bootstrap-n", type=int, default=200,
                         dest="bootstrap_n")
+    parser.add_argument("--balance",     action="store_true",
+                        help="Subsample to 50/50 Good/Bad before analysis "
+                             "(keeps all Bad cases, randomly samples equal Good). "
+                             "Reports are saved with '_balanced' suffix.")
     args = parser.parse_args()
 
     os.makedirs(args.output, exist_ok=True)
@@ -613,6 +617,14 @@ def main():
         condition   = (results_df["condition"].iloc[0]
                        if "condition" in results_df.columns else "unknown")
 
+        if args.balance:
+            bad  = results_df[results_df["credit_risk"] == "Bad"]
+            good = results_df[results_df["credit_risk"] == "Good"].sample(
+                n=len(bad), random_state=42
+            )
+            results_df = pd.concat([bad, good]).reset_index(drop=True)
+            print(f"  Balanced subset: {len(bad)} Bad + {len(good)} Good = {len(results_df)} total")
+
         om   = output_metrics(results_df, model_label)
         desc = descriptive_analysis(results_df, normative, model_label)
         reg  = None
@@ -633,11 +645,12 @@ def main():
 
         # Write individual report
         stem        = os.path.splitext(os.path.basename(results_path))[0]
-        report_path = os.path.join(args.output, f"report_{stem}.txt")
+        suffix      = "_balanced" if args.balance else ""
+        report_path = os.path.join(args.output, f"report_{stem}{suffix}.txt")
         write_report(out, report_path)
 
         # Save descriptive CSV
-        csv_path = os.path.join(args.output, f"descriptive_{stem}.csv")
+        csv_path = os.path.join(args.output, f"descriptive_{stem}{suffix}.csv")
         desc["df"].to_csv(csv_path, index=False)
         print(f"\nDescriptive CSV : {csv_path}")
         print(f"Report          : {report_path}")

@@ -209,7 +209,9 @@ def main():
 
     client    = get_client()
     input_lower = args.input.lower()
-    if "court_extern" in input_lower:
+    if "introspective" in input_lower:
+        condition = "introspective"
+    elif "court_extern" in input_lower:
         condition = "court_extern"
     elif "scenario" in input_lower:
         condition = "scenario"
