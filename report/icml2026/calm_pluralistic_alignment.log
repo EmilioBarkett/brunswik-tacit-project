@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.11.22)  16 APR 2026 14:21
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.11.22)  8 MAY 2026 21:04
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -706,40 +706,40 @@ Package hyperref Info: Link coloring ON on input line 25.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\\' on input line 42.
+(hyperref)                removing `\\' on input line 41.
 
 \c@@affil@anon=\count342
 (/usr/local/texlive/2024/texmf-dist/tex/latex/microtype/mt-cmr.cfg
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 42.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 41.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 ) (/usr/local/texlive/2024/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 42.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 41.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (/usr/local/texlive/2024/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 
-Package hyperref Warning: Ignoring empty anchor on input line 44.
+Package hyperref Warning: Ignoring empty anchor on input line 43.
 
-LaTeX Font Info:    Trying to load font information for OMS+ptm on input line 44.
+LaTeX Font Info:    Trying to load font information for OMS+ptm on input line 43.
 (/usr/local/texlive/2024/texmf-dist/tex/latex/psnfss/omsptm.fd
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/b/n' in size <9> not available
-(Font)              Font shape `OMS/cmsy/b/n' tried instead on input line 44.
+(Font)              Font shape `OMS/cmsy/b/n' tried instead on input line 43.
 
-Underfull \hbox (badness 1609) in paragraph at lines 44--44
+Underfull \hbox (badness 1609) in paragraph at lines 43--43
 [][][]|  $[]$\OT1/ptm/m/n/9 (+20) Anonymous In-sti-tu-tion, Anony-mous City, Anony-mous
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 44--44
+Underfull \hbox (badness 10000) in paragraph at lines 43--43
 \OT1/ptm/m/n/9 (+20) Re-gion, Anony-mous Coun-try.\OT1/ptm/b/n/9 (+20) AUTHORERR: Miss-ing
  []
 
@@ -754,7 +754,13 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [2]
-LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 269.
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [3]
+LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 134.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
@@ -763,42 +769,42 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 
-Underfull \hbox (badness 3417) in paragraph at lines 267--278
-[]\OT1/ptm/m/n/10 (+20) This do-main in-tro-duces a ten-sion ab-sent from the
+Underfull \hbox (badness 1902) in paragraph at lines 142--143
+[]\OT1/ptm/m/n/10 (+20) The org-externalized con-di-tion in-jects nor-ma-tive cue
  []
 
-
-Underfull \hbox (badness 1655) in paragraph at lines 267--278
-\OT1/ptm/m/n/10 (+20) ECHR study. Sev-eral cues in the dataset are pro-
- []
-
-
-Underfull \hbox (badness 7704) in paragraph at lines 267--278
-\OT1/ptm/m/n/10 (+20) law: \OT1/pcr/m/n/10 personal[]status[]sex\OT1/ptm/m/n/10 (+20) , \OT1/pcr/m/n/10 age[]years\OT1/ptm/m/n/10 (+20) , and
- []
-
+<figures/alignment_vs_accuracy_comparison.png, id=112, 724.6272pt x 454.8192pt>
+File: figures/alignment_vs_accuracy_comparison.png Graphic file (type png)
+<use figures/alignment_vs_accuracy_comparison.png>
+Package pdftex.def Info: figures/alignment_vs_accuracy_comparison.png  used on input line 146.
+(pdftex.def)             Requested size: 487.8225pt x 306.18468pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
-Underfull \hbox (badness 1824) in paragraph at lines 296--299
-[]\OT1/ptm/m/n/10 (+20) We mea-sure the same suite of met-rics as Study 1,
+Overfull \hbox (1.41992pt too wide) in paragraph at lines 188--202
+ [] 
  []
 
+[4]
+Underfull \vbox (badness 6001) has occurred while \output is active []
 
-Underfull \hbox (badness 2418) in paragraph at lines 296--299
-\OT1/ptm/m/n/10 (+20) and ad-di-tion-ally an-a-lyze the weight placed on pro-
- []
 
-[3]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [5 <./figures/alignment_vs_accuracy_comparison.png>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [6]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  (./calm_pluralistic_alignment.bbl
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [4]) [5
-
-] (./calm_pluralistic_alignment.aux)
+ [7]) [8] (./calm_pluralistic_alignment.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
@@ -807,18 +813,18 @@ Package rerunfilecheck Info: File `calm_pluralistic_alignment.out' has not chang
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 28021 strings out of 474116
- 522637 string characters out of 5743681
- 1954187 words of memory out of 5000000
- 49643 multiletter control sequences out of 15000+600000
- 593800 words of font info for 239 fonts, out of 8000000 for 9000
+ 28060 strings out of 474116
+ 523114 string characters out of 5743681
+ 1957187 words of memory out of 5000000
+ 49628 multiletter control sequences out of 15000+600000
+ 595746 words of font info for 262 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,11n,101p,1090b,859s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmbsy9.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on calm_pluralistic_alignment.pdf (5 pages, 183185 bytes).
+ 99i,11n,101p,1424b,628s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmbsy9.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on calm_pluralistic_alignment.pdf (8 pages, 336287 bytes).
 PDF statistics:
- 187 PDF objects out of 1000 (max. 8388607)
- 148 compressed objects within 2 object streams
- 40 named destinations out of 1000 (max. 500000)
- 51725 words of extra memory for PDF output out of 61914 (max. 10000000)
+ 271 PDF objects out of 1000 (max. 8388607)
+ 222 compressed objects within 3 object streams
+ 60 named destinations out of 1000 (max. 500000)
+ 51730 words of extra memory for PDF output out of 61914 (max. 10000000)
 

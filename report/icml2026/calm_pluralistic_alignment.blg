@@ -3,44 +3,47 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: calm_pluralistic_alignment.aux
 The style file: icml2026.bst
 Database file #1: calm_references.bib
-You've used 10 entries,
+Warning--empty journal in russell2019human
+Warning--empty journal in turpin2024language
+You've used 23 entries,
             2773 wiz_defined-function locations,
-            651 strings with 6462 characters,
-and the built_in function-call counts, 4143 in all, are:
-= -- 346
-> -- 243
-< -- 8
-+ -- 85
-- -- 75
-* -- 308
-:= -- 665
-add.period$ -- 31
-call.type$ -- 10
-change.case$ -- 52
-chr.to.int$ -- 10
-cite$ -- 20
-duplicate$ -- 201
-empty$ -- 346
-format.name$ -- 87
-if$ -- 852
+            724 strings with 9177 characters,
+and the built_in function-call counts, 10997 in all, are:
+= -- 937
+> -- 726
+< -- 14
++ -- 248
+- -- 225
+* -- 907
+:= -- 1732
+add.period$ -- 70
+call.type$ -- 23
+change.case$ -- 139
+chr.to.int$ -- 23
+cite$ -- 48
+duplicate$ -- 479
+empty$ -- 858
+format.name$ -- 255
+if$ -- 2259
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 12
-newline$ -- 59
-num.names$ -- 40
-pop$ -- 119
+missing$ -- 25
+newline$ -- 124
+num.names$ -- 92
+pop$ -- 289
 preamble$ -- 1
-purify$ -- 45
+purify$ -- 119
 quote$ -- 0
-skip$ -- 151
+skip$ -- 372
 stack$ -- 0
-substring$ -- 92
-swap$ -- 15
-text.length$ -- 1
+substring$ -- 360
+swap$ -- 35
+text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 95
-warning$ -- 0
-while$ -- 38
+type$ -- 238
+warning$ -- 2
+while$ -- 96
 width$ -- 0
-write$ -- 134
+write$ -- 297
+(There were 2 warnings)

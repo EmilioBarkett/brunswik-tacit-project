@@ -1,4 +1,4 @@
-\begin{thebibliography}{10}
+\begin{thebibliography}{23}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -20,6 +20,26 @@ Brunswik, E.
 \newblock \emph{The Conceptual Framework of Psychology}.
 \newblock University of Chicago Press, 1952.
 
+\bibitem[Chalkidis et~al.(2021)Chalkidis, Fergadiotis, Tsarapatsanis, Aletras, Androutsopoulos, and Malakasiotis]{chalkidis2021paragraph}
+Chalkidis, I., Fergadiotis, M., Tsarapatsanis, D., Aletras, N., Androutsopoulos, I., and Malakasiotis, P.
+\newblock Paragraph-level rationale extraction through regularization: A case study on european court of human rights cases.
+\newblock In \emph{Proceedings of the 2021 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies}, 2021.
+
+\bibitem[Dolata et~al.(2022)Dolata, Feuerriegel, and Schwabe]{dolata2022sociotechnical}
+Dolata, M., Feuerriegel, S., and Schwabe, G.
+\newblock A sociotechnical view of algorithmic fairness.
+\newblock \emph{Information Systems Journal}, 32\penalty0 (4):\penalty0 754--818, 2022.
+
+\bibitem[Gabriel(2020)]{gabriel2020artificial}
+Gabriel, I.
+\newblock Artificial intelligence, values, and alignment.
+\newblock \emph{Minds and Machines}, 30\penalty0 (3):\penalty0 411--437, 2020.
+
+\bibitem[Geirhos et~al.(2020)Geirhos, Jacobsen, Michaelis, Zemel, Brendel, Bethge, and Wichmann]{geirhos2020shortcut}
+Geirhos, R., Jacobsen, J.-H., Michaelis, C., Zemel, R., Brendel, W., Bethge, M., and Wichmann, F.~A.
+\newblock Shortcut learning in deep neural networks.
+\newblock \emph{Nature Machine Intelligence}, 2\penalty0 (11):\penalty0 665--673, 2020.
+
 \bibitem[Hammond et~al.(1964)Hammond, Hursch, and Todd]{hammond1964psychology}
 Hammond, K.~R., Hursch, C.~J., and Todd, F.~J.
 \newblock Analyzing the components of clinical inference.
@@ -31,20 +51,65 @@ Hofmann, H.
 \newblock \url{https://doi.org/10.24432/C5NC77}, 1994.
 \newblock UCI Machine Learning Repository.
 
+\bibitem[Karelaia \& Hogarth(2008)Karelaia and Hogarth]{karelaia2008minds}
+Karelaia, N. and Hogarth, R.~M.
+\newblock Determinants of linear judgment: A meta-analysis of lens model studies.
+\newblock \emph{Psychological Bulletin}, 134\penalty0 (3):\penalty0 404--426, 2008.
+
+\bibitem[Lanham et~al.(2023)]{lanham2023measuring}
+Lanham, M. et~al.
+\newblock Measuring faithfulness in chain-of-thought reasoning.
+\newblock \emph{arXiv preprint arXiv:2307.13702}, 2023.
+
+\bibitem[Lebovitz et~al.(2021)Lebovitz, Levina, and Lifshitz-Assaf]{lebovitz2021ai}
+Lebovitz, S., Levina, N., and Lifshitz-Assaf, H.
+\newblock Is {AI} ground truth really true? {The} dangers of training and evaluating {AI} tools based on experts' know-what.
+\newblock \emph{MIS Quarterly}, 45\penalty0 (3):\penalty0 1501--1526, 2021.
+
 \bibitem[Nonaka(1994)]{nonaka1994dynamic}
 Nonaka, I.
 \newblock A dynamic theory of organizational knowledge creation.
 \newblock \emph{Organization Science}, 5\penalty0 (1):\penalty0 14--37, 1994.
+
+\bibitem[Ouyang et~al.(2022)Ouyang, Wu, Jiang, Almeida, Wainwright, Mishkin, Zhang, Agarwal, Slama, Ray, et~al.]{ouyang2022training}
+Ouyang, L., Wu, J., Jiang, X., Almeida, D., Wainwright, C., Mishkin, P., Zhang, C., Agarwal, S., Slama, K., Ray, A., et~al.
+\newblock Training language models to follow instructions with human feedback.
+\newblock \emph{Advances in Neural Information Processing Systems}, 35:\penalty0 27730--27744, 2022.
+
+\bibitem[Pakarinen \& Huising(2023)Pakarinen and Huising]{pakarinen2023relational}
+Pakarinen, P. and Huising, R.
+\newblock Relational expertise: What machines can't know.
+\newblock \emph{Journal of Management Studies}, 62\penalty0 (5):\penalty0 2053--2082, 2023.
 
 \bibitem[Polanyi(1966)]{polanyi1966tacit}
 Polanyi, M.
 \newblock \emph{The Tacit Dimension}.
 \newblock Doubleday, 1966.
 
+\bibitem[Russell(2019)]{russell2019human}
+Russell, S.
+\newblock Human compatible: Artificial intelligence and the problem of control.
+\newblock 2019.
+
+\bibitem[Selbst et~al.(2019)Selbst, Boyd, Friedler, Venkatasubramanian, and Vertesi]{selbst2019fairness}
+Selbst, A.~D., Boyd, D., Friedler, S.~A., Venkatasubramanian, S., and Vertesi, J.
+\newblock Fairness and abstraction in sociotechnical systems.
+\newblock In \emph{Proceedings of the Conference on Fairness, Accountability, and Transparency}, pp.\  59--68, 2019.
+
+\bibitem[Smith et~al.(2003)Smith, Gilhooly, and Walker]{smith2003factors}
+Smith, L., Gilhooly, K., and Walker, A.
+\newblock Factors influencing prescribing decisions in the treatment of depression: A social judgement theory approach.
+\newblock \emph{Psychology, Health \& Medicine}, 17:\penalty0 51--63, 2003.
+
 \bibitem[Sorensen et~al.(2024)Sorensen, Bhatt, Gordon, Hashimoto, Moschella, Radford, Reimers, Smith, Talat, and Zettlemoyer]{sorensen2024roadmap}
 Sorensen, T., Bhatt, L., Gordon, M., Hashimoto, T., Moschella, L., Radford, A., Reimers, N., Smith, N.~A., Talat, Z., and Zettlemoyer, L.
 \newblock A roadmap to pluralistic alignment.
 \newblock \emph{arXiv preprint arXiv:2402.05070}, 2024.
+
+\bibitem[Turpin et~al.(2024)Turpin, Michael, Perez, and Bowman]{turpin2024language}
+Turpin, M., Michael, J., Perez, E., and Bowman, S.~R.
+\newblock Language models don't always say what they think: Unfaithful explanations in chain-of-thought prompting.
+\newblock 2024.
 
 \bibitem[Tyler(1988)]{tyler1988psychology}
 Tyler, T.~R.

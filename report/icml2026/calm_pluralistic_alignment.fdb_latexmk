@@ -1,14 +1,14 @@
 # Fdb version 4
-["bibtex calm_pluralistic_alignment"] 1776370877.8794 "calm_pluralistic_alignment.aux" "calm_pluralistic_alignment.bbl" "calm_pluralistic_alignment" 1776370879.3882 0
-  "./calm_references.bib" 1776370765.64107 4141 9bd38fe7744965d398959b4a9d6885c8 ""
+["bibtex calm_pluralistic_alignment"] 1778299498.08719 "calm_pluralistic_alignment.aux" "calm_pluralistic_alignment.bbl" "calm_pluralistic_alignment" 1778299500.04101 0
+  "./calm_references.bib" 1778193091.8941 8171 cffea9d3a23cf60ff578fe1bb80d4f3b ""
   "./icml2026.bst" 1776370599.9326 27147 88eb4aed280e585571f8eac50f39a681 ""
-  "calm_pluralistic_alignment.aux" 1776370879.08018 2028 e5071ef4f40344c20bb7248ec43cad4a "pdflatex"
+  "calm_pluralistic_alignment.aux" 1778299499.65765 4643 7b899e2ec61386ef879678b2c3130f2b "pdflatex"
   (generated)
   "calm_pluralistic_alignment.bbl"
   "calm_pluralistic_alignment.blg"
   (rewritten before read)
-["pdflatex"] 1776370878.01614 "/Users/leo/Documents/GitHub/brunswik-tacit-project/report/icml2026/calm_pluralistic_alignment.tex" "calm_pluralistic_alignment.pdf" "calm_pluralistic_alignment" 1776370879.38842 0
-  "/Users/leo/Documents/GitHub/brunswik-tacit-project/report/icml2026/calm_pluralistic_alignment.tex" 1776370740.94187 22698 d06fca40730f04c36f3d4e161134832a ""
+["pdflatex"] 1778299498.26301 "/Users/leo/Documents/GitHub/brunswik-tacit-project/report/icml2026/calm_pluralistic_alignment.tex" "calm_pluralistic_alignment.pdf" "calm_pluralistic_alignment" 1778299500.0412 0
+  "/Users/leo/Documents/GitHub/brunswik-tacit-project/report/icml2026/calm_pluralistic_alignment.tex" 1778299495.94487 37693 b4e87e2018a383380e069fd357261434 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/adobe/courier/pcrr7t.tfm" 1136768653 960 379cc0019370a9e0208a0a3f949f847a ""
@@ -53,6 +53,8 @@
   "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb" 1248133631 32762 224316ccc9ad3ca0423a14971cfa7fc1 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb" 1248133631 33993 9b89b85fd2d9df0482bd47194d1d3bf3 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1248133631 32569 5e5ddc8df908dea60932f3c484a54c0d ""
+  "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb" 1248133631 32587 1788b0c1c5b39540c96f5e42ccd6dae8 ""
+  "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb" 1248133631 32442 c975af247b6702f7ca0c299af3616b80 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmbsy9.pfb" 1248133631 27817 24c2fd675d684d30218eed425386b567 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb" 1136849748 45758 19968a0990191524e34e1994d4a31cb6 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/type1/urw/times/utmb8a.pfb" 1136849748 44729 811d6c62865936705a31c797a1d5dada ""
@@ -214,11 +216,12 @@
   "/usr/local/texlive/2024/texmf.cnf" 1710266656 577 e590dabc9e28c5b61546e15f63eebcdf ""
   "algorithm.sty" 1776370599.93058 2223 ada3eaa0c1bd465a639433dfafc2fc4e ""
   "algorithmic.sty" 1776370599.93097 7414 ce084815cf0aab483787dbc4bf2ace9c ""
-  "calm_pluralistic_alignment.aux" 1776370879.08018 2028 e5071ef4f40344c20bb7248ec43cad4a "pdflatex"
-  "calm_pluralistic_alignment.bbl" 1776370878.01155 2655 871f488a92df73a332c4d98ccaaf5eb4 "bibtex calm_pluralistic_alignment"
-  "calm_pluralistic_alignment.out" 1776370878.75923 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "calm_pluralistic_alignment.tex" 1776370740.94187 22698 d06fca40730f04c36f3d4e161134832a ""
+  "calm_pluralistic_alignment.aux" 1778299499.65765 4643 7b899e2ec61386ef879678b2c3130f2b "pdflatex"
+  "calm_pluralistic_alignment.bbl" 1778299498.25833 6632 21a57d66ee7bc8855eef4be21b4b56c4 "bibtex calm_pluralistic_alignment"
+  "calm_pluralistic_alignment.out" 1778299499.1014 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "calm_pluralistic_alignment.tex" 1778299495.94487 37693 b4e87e2018a383380e069fd357261434 ""
   "fancyhdr.sty" 1776370599.9323 31715 19e60610b63819fe670dfa1cd84a4e94 ""
+  "figures/alignment_vs_accuracy_comparison.png" 1778191849.04587 148086 d79de3d6787caa400b3d20cc1cefa904 ""
   "icml2026.sty" 1776370599.93289 27344 8c96f291f57623e81d0a232c8de55616 ""
   (generated)
   "calm_pluralistic_alignment.aux"
