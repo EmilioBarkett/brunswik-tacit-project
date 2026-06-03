@@ -143,10 +143,25 @@ def encode_features(X_raw: pd.DataFrame) -> np.ndarray:
     Label-encode categorical columns, coerce numerics.
     Returns a numpy array with shape (n_cases, 20).
     Encoding is fit on the passed data, so it is consistent within a call.
+
+    LEGACY TIER-LABEL METRIC. This builds the design matrix from the LLM's own
+    per-case tier labels (HIGH/MEDIUM/LOW, label-encoded), not the actual cue
+    values, and the regression_analysis() below regresses the ground-truth
+    outcome on those same labels per model — so there is no fixed organizational
+    policy. It is kept only to reproduce the originally reported cosine numbers
+    (the committed analysis/*_balanced.txt reports). The corrected, method-faithful
+    analysis (decisions regressed on cue values against one fixed org policy,
+    one-hot + standardized) lives in calm_corrected/; prefer that for new work.
+
+    Problem-B fix: the dtype test below was `X[col].dtype == object`, which under
+    current pandas fails for string-dtype tier labels and routes them through
+    pd.to_numeric().fillna(0), zeroing the matrix and making the cosine NaN. The
+    `is_numeric_dtype` check restores the intended (old-pandas) behaviour so the
+    committed numbers regenerate. This does not otherwise change the metric.
     """
     X = X_raw.copy()
     for col in ALL_ATTRIBUTES:
-        if X[col].dtype == object:
+        if not pd.api.types.is_numeric_dtype(X[col]):
             le = LabelEncoder()
             X[col] = le.fit_transform(X[col].astype(str))
         else:
