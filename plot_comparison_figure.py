@@ -24,29 +24,33 @@ from scipy.stats import pearsonr
 
 # ── PATHS ─────────────────────────────────────────────────────────────────────
 
-ECHR_CSV   = "/tmp/ECHR_decision_cue_alignment/cross_model_results/per_model_summary.csv"
-OUTPUT     = "report/icml2026/figures/alignment_vs_accuracy_comparison.png"
+ECHR_CSV   = "/Users/niklashsg/Research/ECHR_decision_cue_alignment/.claude/worktrees/fervent-morse-6901d0/cross_model_results/per_model_summary.csv"
+# New name so the original committed figure is not overwritten; the German Credit
+# (right) panel now uses the corrected cue-value cosines.
+OUTPUT     = "report/icml2026/figures/alignment_vs_accuracy_comparison_corrected.png"
 
 # ── GERMAN CREDIT DATA (balanced subset, n=600) ───────────────────────────────
-# Source: analyze_weights.py balanced reports in analysis/
+# CORRECTED cue-value cosines from calm_corrected (one-hot + standardized, fixed
+# org policy). Accuracies are output-level and unchanged. See
+# analysis/corrected/corrected_german_credit_results.csv.
 
 GERMAN_RECORDS = [
     # model_display, condition, cosine, accuracy
-    ("Claude Haiku 4.5", "baseline",              0.503, 0.535),
-    ("Claude Haiku 4.5", "org-externalized",     -0.104, 0.540),
-    ("Claude Haiku 4.5", "introspective-externalized", 0.360, 0.518),
-    ("GPT-5.4-mini",     "baseline",              0.060, 0.483),
-    ("GPT-5.4-mini",     "org-externalized",      0.224, 0.497),
-    ("GPT-5.4-mini",     "introspective-externalized", 0.219, 0.495),
-    ("GPT-5.4-nano",     "baseline",              0.499, 0.442),
-    ("GPT-5.4-nano",     "org-externalized",      0.076, 0.483),
-    ("GPT-5.4-nano",     "introspective-externalized", -0.256, 0.448),
-    ("Grok 4.1 Fast",    "baseline",             -0.229, 0.488),
-    ("Grok 4.1 Fast",    "org-externalized",      0.176, 0.525),
+    ("Claude Haiku 4.5", "baseline",                    0.057, 0.535),
+    ("Claude Haiku 4.5", "org-externalized",            0.063, 0.540),
+    ("Claude Haiku 4.5", "introspective-externalized",  0.111, 0.518),
+    ("GPT-5.4-mini",     "baseline",                   -0.033, 0.483),
+    ("GPT-5.4-mini",     "org-externalized",            0.207, 0.497),
+    ("GPT-5.4-mini",     "introspective-externalized", -0.082, 0.495),
+    ("GPT-5.4-nano",     "baseline",                   -0.246, 0.442),
+    ("GPT-5.4-nano",     "org-externalized",           -0.056, 0.483),
+    ("GPT-5.4-nano",     "introspective-externalized", -0.152, 0.448),
+    ("Grok 4.1 Fast",    "baseline",                   -0.043, 0.488),
+    ("Grok 4.1 Fast",    "org-externalized",            0.076, 0.525),
     # Grok introspective excluded (degenerate: 99.5% Good)
-    ("DeepSeek v3.2",    "baseline",              0.264, 0.525),
-    ("DeepSeek v3.2",    "org-externalized",      0.164, 0.515),
-    ("DeepSeek v3.2",    "introspective-externalized", -0.183, 0.508),
+    ("DeepSeek v3.2",    "baseline",                    0.025, 0.525),
+    ("DeepSeek v3.2",    "org-externalized",            0.117, 0.515),
+    ("DeepSeek v3.2",    "introspective-externalized",  0.016, 0.508),
 ]
 
 # ── SHARED VISUAL SETTINGS ────────────────────────────────────────────────────
@@ -88,8 +92,11 @@ def get_color(model):
 
 def plot_panel(ax, df, x_col, y_col, condition_col, model_col,
                title, xlabel, ylabel, normative_line=None,
-               normative_label=None):
-    """Draw one scatter panel and return Pearson r, p."""
+               normative_label=None, xlim=None, ylim=None):
+    """Draw one scatter panel and return Pearson r, p.
+
+    ``xlim``/``ylim`` force a shared scale across panels (set before the ceiling
+    label is placed so its position is correct)."""
 
     conditions_present = []
     for cond_key in ["baseline", "court-externalized", "org-externalized",
@@ -118,6 +125,12 @@ def plot_panel(ax, df, x_col, y_col, condition_col, model_col,
             alpha=0.55, linewidth=1.2, zorder=1)
 
     r, p = pearsonr(x, y)
+
+    # Shared scale across panels (set before the ceiling label is placed).
+    if xlim is not None:
+        ax.set_xlim(xlim)
+    if ylim is not None:
+        ax.set_ylim(ylim)
 
     # Reference lines
     ax.axvline(0, color="grey", linestyle=":", linewidth=0.8, alpha=0.5)
@@ -164,9 +177,14 @@ def make_figure():
         if label not in all_cond_labels:
             all_cond_labels[label] = CONDITION_MARKER.get(cond, "D")
 
+    # ── Shared y-scale across both panels (x left independent) ────────────────
+    all_y = np.concatenate([echr["accuracy"].values, gc["accuracy"].values, [0.715]])
+    ypad = 0.08 * (all_y.max() - all_y.min())
+    GY = (all_y.min() - ypad, all_y.max() + ypad)
+
     # ── Figure ────────────────────────────────────────────────────────────────
     fig, axes = plt.subplots(1, 2, figsize=(12, 5))
-    plt.subplots_adjust(wspace=0.35)
+    plt.subplots_adjust(wspace=0.20)
 
     # Left: ECHR
     plot_panel(
@@ -175,8 +193,9 @@ def make_figure():
         condition_col="condition", model_col="model",
         title="Study 1: ECHR Article 6 Decisions\n($n=10$ models × 3 conditions)",
         xlabel="Policy alignment: cosine similarity of ridge cue weights",
-        ylabel="LLM accuracy vs. court decision",
-        normative_line=0.715, normative_label="court regression ceiling",
+        ylabel="LLM output accuracy",
+        normative_line=0.685, normative_label="court regression linear ceiling",
+        ylim=GY,
     )
 
     # Right: German Credit
@@ -186,8 +205,9 @@ def make_figure():
         condition_col="condition", model_col="model",
         title="Study 2: German Credit Decisions\n(balanced subset, $n=5$ models × 2–3 conditions)",
         xlabel="Policy alignment: cosine similarity of ridge cue weights",
-        ylabel="LLM accuracy vs. ground truth labels",
-        normative_line=0.751, normative_label="normative ceiling = 75.1%",
+        ylabel="LLM output accuracy",
+        normative_line=0.715, normative_label="bank regression linear ceiling",
+        ylim=GY,
     )
 
     # ── Shared condition legend (shapes) ─────────────────────────────────────
@@ -201,7 +221,7 @@ def make_figure():
         loc="lower center", ncol=len(all_cond_labels),
         fontsize=8, title_fontsize=8,
         framealpha=0.85,
-        bbox_to_anchor=(0.5, -0.06),
+        bbox_to_anchor=(0.5, -0.10),
     )
 
     # ── Model legend (colours) ────────────────────────────────────────────────
@@ -215,12 +235,7 @@ def make_figure():
         loc="lower center", ncol=5,
         fontsize=7.5, title_fontsize=8,
         framealpha=0.85,
-        bbox_to_anchor=(0.5, -0.22),
-    )
-
-    plt.suptitle(
-        "Cue-utilization alignment vs. output accuracy across organizational domains",
-        fontsize=11, y=1.01,
+        bbox_to_anchor=(0.5, -0.24),
     )
 
     plt.savefig(OUTPUT, dpi=150, bbox_inches="tight")

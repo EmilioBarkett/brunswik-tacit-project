@@ -70,8 +70,10 @@ def _scatter(space, betas, accs, fig_path):
     m, bb = np.polyfit(x, y, 1)
     xl = np.linspace(x.min() - 0.05, x.max() + 0.05, 200)
     ax.plot(xl, (m * xl + bb) * 100, "--", color="grey", alpha=0.55, lw=1.2, zorder=1)
-    ax.axhline(75.1, ls=":", color="black", alpha=0.5, lw=1)
-    ax.text(ax.get_xlim()[1], 75.6, "linear ceiling 75.1%", ha="right", va="bottom", fontsize=8, alpha=0.7)
+    ax.axhline(core.BALANCED_CEILING_ACC, ls=":", color="black", alpha=0.5, lw=1)
+    ax.text(ax.get_xlim()[1], core.BALANCED_CEILING_ACC + 0.5,
+            f"linear ceiling {core.BALANCED_CEILING_ACC:.1f}% (balanced)",
+            ha="right", va="bottom", fontsize=8, alpha=0.7)
     ax.axvline(0, color="grey", alpha=0.25, lw=0.8)
     ax.set_xlabel("Policy alignment (corrected cosine similarity)")
     ax.set_ylabel("Output accuracy (%)")

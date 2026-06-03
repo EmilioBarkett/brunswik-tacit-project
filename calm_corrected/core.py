@@ -76,6 +76,15 @@ ONE_HOT_DROP_FIRST = False    # compare coefficients in the full one-hot space
 CORRECTED_MAX_ITER = 2000     # solver iterations for the corrected path
 LEGACY_MAX_ITER = 1000        # matches analyze_weights.py exactly (paper repro)
 
+# Linear ceiling for the balanced-600 figure: 5-fold CV accuracy of the
+# organizational policy (credit_risk regressed on the cue values, one-hot +
+# standardized, C=1.0) on the balanced 600 — i.e. the SAME encoding used for the
+# corrected alignment everywhere else. Reproducible via the balanced-600 org fit
+# (CV acc 71.5%, CV AUC 0.776). This is the method-consistent balanced ceiling;
+# the paper's 75.1% is the full-1000 number and its 66.8% was a label-encoded fit.
+BALANCED_CEILING_ACC = 71.5
+BALANCED_CEILING_AUC = 0.776
+
 # ── CUE DEFINITIONS ──────────────────────────────────────────────────────────
 ALL_ATTRIBUTES = [
     "checking_account_status", "duration_months", "credit_history", "purpose",
