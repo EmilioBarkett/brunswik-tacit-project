@@ -1,0 +1,67 @@
+attribute,decision_maker,usage
+age_years,Organization,0.1895971926944671
+personal_status_sex,Organization,0.15920635479686163
+foreign_worker,Organization,0.12810041811237036
+checking_account_status,Organization,0.419092463445939
+duration_months,Organization,0.2062799938487303
+credit_amount,Organization,0.33087555421772874
+age_years,Claude Haiku 4.5 (baseline),0.016047529882624877
+age_years,Claude Haiku 4.5 (org-ext),0.010307726937735063
+personal_status_sex,Claude Haiku 4.5 (baseline),0.07398738472022928
+personal_status_sex,Claude Haiku 4.5 (org-ext),0.050828539578784
+foreign_worker,Claude Haiku 4.5 (baseline),0.14663981917172403
+foreign_worker,Claude Haiku 4.5 (org-ext),0.031812074027861945
+checking_account_status,Claude Haiku 4.5 (baseline),0.3326658339665526
+checking_account_status,Claude Haiku 4.5 (org-ext),0.4025850173802024
+duration_months,Claude Haiku 4.5 (baseline),0.17245792784669237
+duration_months,Claude Haiku 4.5 (org-ext),0.17282777254580237
+credit_amount,Claude Haiku 4.5 (baseline),0.01785151410328466
+credit_amount,Claude Haiku 4.5 (org-ext),0.15550349451767023
+age_years,GPT-5.4-mini (baseline),0.14791603027325825
+age_years,GPT-5.4-mini (org-ext),0.1631720518798449
+personal_status_sex,GPT-5.4-mini (baseline),0.0850256371000569
+personal_status_sex,GPT-5.4-mini (org-ext),0.0524571832122441
+foreign_worker,GPT-5.4-mini (baseline),0.11565663798944797
+foreign_worker,GPT-5.4-mini (org-ext),0.021586306754896697
+checking_account_status,GPT-5.4-mini (baseline),0.11336878710322199
+checking_account_status,GPT-5.4-mini (org-ext),0.34357739120168196
+duration_months,GPT-5.4-mini (baseline),0.025064134396770157
+duration_months,GPT-5.4-mini (org-ext),0.1686804663130604
+credit_amount,GPT-5.4-mini (baseline),0.0033027248277922687
+credit_amount,GPT-5.4-mini (org-ext),0.29365733927658755
+age_years,GPT-5.4-nano (baseline),0.022933075596270155
+age_years,GPT-5.4-nano (org-ext),0.1191394742578784
+personal_status_sex,GPT-5.4-nano (baseline),0.06512203728350681
+personal_status_sex,GPT-5.4-nano (org-ext),0.03923369428376768
+foreign_worker,GPT-5.4-nano (baseline),0.07526388318763355
+foreign_worker,GPT-5.4-nano (org-ext),0.027604670832832218
+checking_account_status,GPT-5.4-nano (baseline),0.07953224070575339
+checking_account_status,GPT-5.4-nano (org-ext),0.16289610268083268
+duration_months,GPT-5.4-nano (baseline),0.031800735538497917
+duration_months,GPT-5.4-nano (org-ext),0.17060496691820673
+credit_amount,GPT-5.4-nano (baseline),0.09194363534188511
+credit_amount,GPT-5.4-nano (org-ext),0.0024697580375224308
+age_years,Grok 4.1 Fast (baseline),0.15670164741604306
+age_years,Grok 4.1 Fast (org-ext),0.19516029076016234
+personal_status_sex,Grok 4.1 Fast (baseline),0.018815567802094358
+personal_status_sex,Grok 4.1 Fast (org-ext),0.03962395665485991
+foreign_worker,Grok 4.1 Fast (baseline),0.0783645882124994
+foreign_worker,Grok 4.1 Fast (org-ext),0.08133581371341336
+checking_account_status,Grok 4.1 Fast (baseline),0.10831974543445765
+checking_account_status,Grok 4.1 Fast (org-ext),0.3463677373089262
+duration_months,Grok 4.1 Fast (baseline),0.040041722784049626
+duration_months,Grok 4.1 Fast (org-ext),0.20255866132046493
+credit_amount,Grok 4.1 Fast (baseline),0.006706101604384013
+credit_amount,Grok 4.1 Fast (org-ext),0.11024654484831473
+age_years,DeepSeek v3.2 (baseline),0.09734716913543809
+age_years,DeepSeek v3.2 (org-ext),0.2217926049382367
+personal_status_sex,DeepSeek v3.2 (baseline),0.15072371393832917
+personal_status_sex,DeepSeek v3.2 (org-ext),0.16306801411780486
+foreign_worker,DeepSeek v3.2 (baseline),0.12874682475255853
+foreign_worker,DeepSeek v3.2 (org-ext),0.1043994221335436
+checking_account_status,DeepSeek v3.2 (baseline),0.26836362305453615
+checking_account_status,DeepSeek v3.2 (org-ext),0.4829763211541246
+duration_months,DeepSeek v3.2 (baseline),0.048148173384793484
+duration_months,DeepSeek v3.2 (org-ext),0.20339800122525065
+credit_amount,DeepSeek v3.2 (baseline),0.2987607957429438
+credit_amount,DeepSeek v3.2 (org-ext),0.2301052183765494
