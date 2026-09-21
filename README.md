@@ -4,7 +4,7 @@ Do LLMs weight information the way a decision-maker does, or do they only reach 
 
 [![arXiv](https://img.shields.io/badge/arXiv-2605.25256-b31b1b.svg)](https://arxiv.org/abs/2605.25256)
 
-Companion code and data for [*Whose Alignment? Comparing LLM Process Alignment Across Diverse Organizational Decision Contexts*](https://arxiv.org/abs/2605.25256) (Weller & Barkett, 2026), accepted to the Pluralistic Alignment Workshop @ ICML 2026.
+Companion code and data for [*Whose Alignment? Comparing LLM Process Alignment Across Diverse Organizational Decision Contexts*](https://arxiv.org/abs/2605.25256) (Weller & Barkett, 2026), accepted to the **ICML 2026 Pluralistic Alignment Workshop**.
 
 Part of a [SPAR](https://sparai.org/) research project. The paper covers two organizational settings. This repository holds **Study 2 (German Credit)**. Study 1, on European Court of Human Rights (ECHR) Article 6 decisions, is in a separate project.
 
@@ -62,11 +62,14 @@ brunswik-tacit-project/
 ## Citation
 
 ```bibtex
-@article{weller2026whose,
-  title   = {Whose Alignment? Comparing LLM Process Alignment Across Diverse Organizational Decision Contexts},
-  author  = {Weller, Niklas and Barkett, Emilio},
-  journal = {arXiv preprint arXiv:2605.25256},
-  year    = {2026}
+@misc{weller2026whose,
+  title         = {Whose Alignment? Comparing LLM Process Alignment Across Diverse Organizational Decision Contexts},
+  author        = {Weller, Niklas and Barkett, Emilio},
+  year          = {2026},
+  eprint        = {2605.25256},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.AI},
+  note          = {Accepted to the ICML 2026 Pluralistic Alignment Workshop}
 }
 ```
 
